@@ -14,6 +14,13 @@ export const debugActions: DebugAction[] = [
       game.goToScene("main_menu");
     },
   },
+  {
+    key: "2",
+    description: "Debug scene",
+    action: (game) => {
+      game.goToScene("debug_scene");
+    },
+  },
 ];
 
 export const setupDebugTools = (game: Engine) => {

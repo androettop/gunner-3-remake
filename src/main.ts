@@ -1,5 +1,6 @@
 import { Color, Engine } from "excalibur";
 import MainMenu from "./scenes/main_menu/main_menu";
+import DebugScene from "./scenes/debug_scene/debug_scene";
 import { setupDebugTools } from "./debug";
 
 class Game extends Engine {
@@ -13,6 +14,7 @@ class Game extends Engine {
   }
   initialize() {
     this.add("main_menu", new MainMenu());
+    this.add("debug_scene", new DebugScene());
     this.goToScene("main_menu");
   }
 }

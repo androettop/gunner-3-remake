@@ -11,7 +11,7 @@ const spriteSheet = SpriteSheet.fromImageSource({
   },
 });
 
-export class Player extends Actor {
+class Player extends Actor {
   constructor() {
     super({
       pos: vec(150, 150),
@@ -27,3 +27,5 @@ export class Player extends Actor {
     });
   }
 }
+
+export default Player;
