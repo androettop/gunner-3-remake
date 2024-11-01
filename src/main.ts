@@ -1,6 +1,5 @@
 import { Engine } from "excalibur";
-import { loader } from "./resources";
-import { Player } from "./actors/player/player";
+import MainMenu from "./scenes/main_menu/main_menu";
 
 class Game extends Engine {
   constructor() {
@@ -13,12 +12,11 @@ class Game extends Engine {
     });
   }
   initialize() {
-    const player = new Player();
-    this.add(player);
-
-    this.start(loader);
+    this.add("main_menu", new MainMenu());
+    this.goToScene("main_menu");
   }
 }
 
 export const game = new Game();
 game.initialize();
+game.start();
