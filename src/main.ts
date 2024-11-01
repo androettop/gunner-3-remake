@@ -1,5 +1,6 @@
 import { Color, Engine } from "excalibur";
 import MainMenu from "./scenes/main_menu/main_menu";
+import { setupDebugTools } from "./debug";
 
 class Game extends Engine {
   constructor() {
@@ -19,3 +20,5 @@ class Game extends Engine {
 export const game = new Game();
 game.initialize();
 game.start();
+
+setupDebugTools(game);

@@ -1,5 +1,8 @@
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: gray;
-  }
+body {
+  background-color: gray;
+  font-family: sans-serif;
+}
+
+h2 {
+  margin: 0;
 }

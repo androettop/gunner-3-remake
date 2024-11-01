@@ -103,7 +103,10 @@ class MainMenu extends Scene {
   /**
    * Each time the scene is exited (Engine.goToScene)
    */
-  public onDeactivate() {}
+  public onDeactivate() {
+    // stop music
+    SoundResources.MainMenuMusic.stop();
+  }
 }
 
 export default MainMenu;
