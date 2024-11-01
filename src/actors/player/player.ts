@@ -21,18 +21,19 @@ class Player extends Actor {
       height: 64,
     });
   }
-  private isOnGround: boolean = true;
+
+  activeGroundCollisions = 0;
 
   movementConfig = {
     jumpSpeed: 400,
     runSpeed: 150,
   };
 
-  baseRunAnim = Animation.fromSpriteSheet(playerRunSheet, range(1, 10), 50);
-  armRunAnim = Animation.fromSpriteSheet(playerArmRunSheet, range(1, 10), 50);
+  baseRunAnim = Animation.fromSpriteSheet(playerRunSheet, range(0, 7), 50);
+  armRunAnim = Animation.fromSpriteSheet(playerArmRunSheet, range(0, 7), 50);
 
   jump() {
-    if (this.isOnGround) {
+    if (this.activeGroundCollisions > 0) {
       this.vel.y = -this.movementConfig.jumpSpeed;
     }
   }
@@ -70,6 +71,10 @@ class Player extends Actor {
     }
   }
 
+  onPreUpdate(_engine: Engine, _delta: number): void {
+    this.isOnGround = false;
+  }
+
   public update(engine: Engine, delta: number) {
     super.update(engine, delta);
     this.playerMovement(engine);
@@ -85,6 +90,16 @@ class Player extends Actor {
     });
     this.body.collisionType = CollisionType.Active;
     this.body.useGravity = true;
+    this.on("collisionstart", (e): void => {
+      if (e.side === "Bottom") {
+        this.activeGroundCollisions++;
+      }
+    });
+    this.on("collisionend", (e): void => {
+      if (e.side === "Bottom") {
+        this.activeGroundCollisions--;
+      }
+    });
   }
 }
 
