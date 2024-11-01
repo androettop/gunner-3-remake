@@ -13,6 +13,7 @@ import {
 import { playerJumpSheet, playerRunSheet } from "./resources";
 import PlayerArm from "./arm";
 import { CoyoteComponent } from "../../components/input/coyote";
+import { GAME_CONTROLS } from "../../helpers/consts";
 
 export interface PlayerParams {
   pos: Vector;
@@ -55,10 +56,14 @@ class Player extends Actor {
 
   private playerInput(engine: Engine) {
     // wasd movement with keys
-    if (engine.input.keyboard.isHeld(Keys.D)) {
+    if (
+      GAME_CONTROLS.MOVE_RIGHT.some((key) => engine.input.keyboard.isHeld(key))
+    ) {
       this.direction = 1;
       this.isRunning = true;
-    } else if (engine.input.keyboard.isHeld(Keys.A)) {
+    } else if (
+      GAME_CONTROLS.MOVE_LEFT.some((key) => engine.input.keyboard.isHeld(key))
+    ) {
       this.direction = -1;
       this.isRunning = true;
     } else {
@@ -66,7 +71,9 @@ class Player extends Actor {
     }
 
     // jump
-    this.wantsJump = engine.input.keyboard.wasPressed(Keys.Space);
+    this.wantsJump = GAME_CONTROLS.JUMP.some((key) =>
+      engine.input.keyboard.isHeld(key),
+    );
   }
 
   private updatePlayerState(engine: Engine) {
