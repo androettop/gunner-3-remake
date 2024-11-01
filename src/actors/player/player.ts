@@ -7,7 +7,7 @@ import {
   range,
   Vector,
 } from "excalibur";
-import { playerRunSheet } from "./resources";
+import { playerJumpSheet, playerRunSheet } from "./resources";
 import PlayerArm from "./arm";
 
 export interface PlayerParams {
@@ -17,12 +17,16 @@ export interface PlayerParams {
 class Player extends Actor {
   private activeGroundCollisions = 0;
 
-  public movementConfig = {
-    jumpSpeed: 400,
-    runSpeed: 150,
-  };
+  public jumpSpeed = 400;
+  public runSpeed = 150;
 
-  private baseRunAnim = Animation.fromSpriteSheet(
+  public wantsJump = false;
+
+  public direction: 1 | -1 = 1;
+  public isRunning = false;
+  public isOnGround = false;
+
+  private runAnimation = Animation.fromSpriteSheet(
     playerRunSheet,
     range(0, 7),
     50,
@@ -38,53 +42,60 @@ class Player extends Actor {
     });
   }
 
-  private jump() {
-    if (this.activeGroundCollisions > 0) {
-      this.vel.y = -this.movementConfig.jumpSpeed;
-    }
-  }
-
-  private runLeft() {
-    this.vel.x = -this.movementConfig.runSpeed;
-    this.graphics.flipHorizontal = true;
-    this.graphics.use(this.baseRunAnim);
-    this.playerArm.armDirection = -1;
-    this.playerArm.animState = "run";
-  }
-
-  private runRight() {
-    this.vel.x = this.movementConfig.runSpeed;
-    this.graphics.flipHorizontal = false;
-    this.graphics.use(this.baseRunAnim);
-    this.playerArm.armDirection = 1;
-    this.playerArm.animState = "run";
-  }
-
-  private stopRunning() {
-    this.vel.x = 0;
-    this.graphics.use(playerRunSheet.getSprite(0, 0));
-    this.body;
-    this.playerArm.animState = "idle";
-  }
-
-  private playerMovement(engine: Engine) {
+  private playerInput(engine: Engine) {
     // wasd movement with keys
     if (engine.input.keyboard.isHeld(Keys.D)) {
-      this.runRight();
+      this.direction = 1;
+      this.isRunning = true;
     } else if (engine.input.keyboard.isHeld(Keys.A)) {
-      this.runLeft();
+      this.direction = -1;
+      this.isRunning = true;
     } else {
-      this.stopRunning();
+      this.isRunning = false;
     }
 
-    if (engine.input.keyboard.wasPressed(Keys.Space)) {
-      this.jump();
+    // jump
+    this.wantsJump = engine.input.keyboard.wasPressed(Keys.Space);
+  }
+
+  private updatePlayerState(engine: Engine) {
+    this.isOnGround = this.activeGroundCollisions > 0;
+    this.playerInput(engine);
+  }
+
+  private executePlayerActions() {
+    if (this.isRunning) {
+      this.vel.x = this.direction * this.runSpeed;
+    } else {
+      this.vel.x = 0;
     }
+
+    if (this.wantsJump) {
+      this.vel.y = -this.jumpSpeed;
+    }
+  }
+
+  public animatePlayer() {
+    if (!this.isOnGround) {
+      this.graphics.use(playerJumpSheet.getSprite(0, 0));
+    } else if (this.isRunning) {
+      this.graphics.use(this.runAnimation);
+    } else {
+      this.graphics.use(playerRunSheet.getSprite(0, 0));
+    }
+    this.graphics.flipHorizontal = this.direction < 0;
   }
 
   public update(engine: Engine, delta: number) {
     super.update(engine, delta);
-    this.playerMovement(engine);
+    // Get the new state for the player
+    this.updatePlayerState(engine);
+
+    // Execute the player actions based on the state
+    this.executePlayerActions();
+
+    // Animate player
+    this.animatePlayer();
   }
 
   public onInitialize(engine: Engine) {

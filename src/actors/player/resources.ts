@@ -29,3 +29,13 @@ export const playerArmRunSheet = SpriteSheet.fromImageSource({
     },
   },
 });
+
+export const playerJumpSheet = SpriteSheet.fromImageSourceWithSourceViews({
+  image: PlayerResources.PlayerSprites,
+  sourceViews: [
+    // jump body
+    { x: 0, y: 64 * 7, width: 64, height: 64 },
+    // jump arm
+    { x: 64 * 2, y: 64 * 7, width: 64, height: 64 },
+  ],
+});
