@@ -1,18 +1,18 @@
 import { Engine } from "excalibur";
-import { Player } from "./player";
 import { loader } from "./resources";
+import { Player } from "./actors/player/player";
 
 class Game extends Engine {
-    constructor() {
-      super({width: 800, height: 600});
-    }
-    initialize() {
-      const player = new Player();
-      this.add(player);
-
-      this.start(loader);
-    }
+  constructor() {
+    super({ width: 800, height: 600 });
   }
-  
-  export const game = new Game();
-  game.initialize();
+  initialize() {
+    const player = new Player();
+    this.add(player);
+
+    this.start(loader);
+  }
+}
+
+export const game = new Game();
+game.initialize();

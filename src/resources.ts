@@ -1,11 +1,7 @@
-import { ImageSource, Loader } from "excalibur";
-import sword from "./images/sword.png";
-
-export const Resources = {
-  Sword: new ImageSource(sword)
-} as const;
+import { Loader } from "excalibur";
+import { PlayerResources } from "./actors/player/resources";
 
 export const loader = new Loader();
-for (const res of Object.values(Resources)) {
+for (const res of Object.values(PlayerResources)) {
   loader.addResource(res);
 }
