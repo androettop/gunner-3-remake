@@ -1,0 +1,37 @@
+{
+  "name": "gunner-3-remake",
+  "version": "1.1.0",
+  "description": "Remake of the classic Gunner 3 game",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "test": "npm run build && ex-test -d ./dist -t ./test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/androettop/gunner-3-remake.git"
+  },
+  "keywords": [
+    "excalibur",
+    "excaliburjs",
+    "vite",
+    "game-engine"
+  ],
+  "author": "Pablo Androetto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/androettop/gunner-3-remake.git/issues"
+  },
+  "homepage": "https://github.com/androettop/gunner-3-remake.git#readme",
+  "devDependencies": {
+    "excalibur": "0.29.3",
+    "typescript": "5.6.3",
+    "vite": "5.4.10"
+  },
+  "dependencies": {
+    "@excaliburjs/testing": "^0.26.0"
+  }
+}
