@@ -1,4 +1,4 @@
-import { Engine } from "excalibur";
+import { Color, Engine } from "excalibur";
 import MainMenu from "./scenes/main_menu/main_menu";
 
 class Game extends Engine {
@@ -9,6 +9,7 @@ class Game extends Engine {
       viewport: { width: 1280, height: 960 },
       resolution: { width: 640, height: 480 },
       antialiasing: false,
+      backgroundColor: Color.Black,
     });
   }
   initialize() {

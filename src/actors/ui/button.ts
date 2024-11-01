@@ -6,7 +6,7 @@ export interface ButtonParams {
   onPress: Handler<PointerEvent>;
 }
 
-export class Button extends Actor {
+class Button extends Actor {
   onPress: Handler<PointerEvent>;
   sprite: Graphic;
   pos: Vector;
@@ -28,3 +28,5 @@ export class Button extends Actor {
     this.on("pointerup", this.onPress);
   }
 }
+
+export default Button;
