@@ -1,3 +1,3 @@
 # Gunner 3 remake
 
-![screenshot](./screenshot.png)
+<img src="./screenshot.png" width="640" height="480">
