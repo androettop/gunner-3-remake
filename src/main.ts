@@ -12,7 +12,7 @@ class Game extends Engine {
       backgroundColor: Color.Black,
     });
 
-    this.physics.gravity = vec(0, 800);
+    this.physics.gravity = vec(0, 1000);
   }
   initialize() {
     this.add("main_menu", new MainMenu());
