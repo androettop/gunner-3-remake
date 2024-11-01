@@ -1,31 +1,31 @@
-import { Actor, Graphic, Handler, Vector, PointerEvent } from "excalibur";
+import { Graphic, Handler, PointerEvent } from "excalibur";
+import StaticImage, { StaticImageParams } from "./static_image";
 
-export interface ButtonParams {
-  pos: Vector;
-  sprite: Graphic;
+export interface ButtonParams extends StaticImageParams {
   onPress: Handler<PointerEvent>;
 }
 
-class Button extends Actor {
+class Button extends StaticImage {
   onPress: Handler<PointerEvent>;
-  sprite: Graphic;
-  pos: Vector;
 
-  constructor({ pos, sprite, onPress }: ButtonParams) {
-    super({
-      pos: pos,
-      width: sprite.width,
-      height: sprite.height,
-    });
+  constructor({
+    pos,
+    sprite,
+    hoverSprite,
+    activeSprite,
+    onPress,
+  }: ButtonParams) {
+    super({ pos, sprite, hoverSprite, activeSprite });
 
     this.onPress = onPress;
-    this.sprite = sprite;
-    this.pos = pos;
   }
 
   onInitialize() {
-    this.graphics.add(this.sprite);
-    this.on("pointerup", this.onPress);
+    super.onInitialize();
+
+    this.on("pointerup", (e) => {
+      this.onPress(e);
+    });
   }
 }
 
