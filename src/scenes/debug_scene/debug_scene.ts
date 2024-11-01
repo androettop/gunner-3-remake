@@ -1,19 +1,9 @@
-import { DefaultLoader, Scene, vec } from "excalibur";
+import { Scene, vec } from "excalibur";
 import { SoundResources } from "../../actors/sounds/resources";
 import Player from "../../actors/player/player";
-import { PlayerResources } from "../../actors/player/resources";
 import GrassPlatform from "../../actors/world/grass_platform";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
-import { WorldResources } from "../../actors/world/resources";
-import { loadResources } from "../../helpers/resources";
 class DebugScene extends Scene {
-  /**
-   * Preload any assets, called once
-   */
-  override onPreLoad(loader: DefaultLoader) {
-    loadResources(loader, SoundResources, WorldResources, PlayerResources);
-  }
-
   /**
    * Start-up logic, called once
    */

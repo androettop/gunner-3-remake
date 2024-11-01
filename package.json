@@ -8,7 +8,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test": "npm run build && ex-test -d ./dist -t ./test/test.js"
+    "test": "npm run build && ex-test -d ./dist -t ./test/test.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -28,10 +29,16 @@
   "homepage": "https://github.com/androettop/gunner-3-remake.git#readme",
   "devDependencies": {
     "excalibur": "0.29.3",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
     "typescript": "5.6.3",
     "vite": "5.4.10"
   },
   "dependencies": {
     "@excaliburjs/testing": "^0.26.0"
+  },
+  "lint-staged": {
+    "*.{ts,json,js,css,md}": "prettier --write"
   }
 }

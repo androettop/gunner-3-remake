@@ -6,18 +6,6 @@ import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
 import StaticImage from "../../actors/ui/static_image";
 
 class MainMenu extends Scene {
-  /**
-   * Preload any assets, called once
-   */
-  override onPreLoad(loader: DefaultLoader) {
-    for (const res of Object.values(UiResources)) {
-      loader.addResource(res);
-    }
-    for (const res of Object.values(SoundResources)) {
-      loader.addResource(res);
-    }
-  }
-
   startButton = new Button({
     pos: vec(GAME_WIDTH / 2, 328),
     sprite: uiSpriteSheet.sprites[0],

@@ -48,7 +48,6 @@ class PlayerArm extends Actor {
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
     this.body.collisionType = CollisionType.PreventCollision;
-    this.collider.useBoxCollider(0, 0);
   }
 }
 
