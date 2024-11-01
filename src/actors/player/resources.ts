@@ -24,7 +24,7 @@ export const playerArmRunSheet = SpriteSheet.fromImageSource({
     spriteHeight: 64,
   },
   spacing: {
-    margin: {
+    originOffset: {
       y: 64,
     },
   },

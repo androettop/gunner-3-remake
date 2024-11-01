@@ -7,13 +7,29 @@ import {
   range,
   Vector,
 } from "excalibur";
-import { playerArmRunSheet, playerRunSheet } from "./resources";
+import { playerRunSheet } from "./resources";
+import PlayerArm from "./arm";
 
 export interface PlayerParams {
   pos: Vector;
 }
 
 class Player extends Actor {
+  private activeGroundCollisions = 0;
+
+  public movementConfig = {
+    jumpSpeed: 400,
+    runSpeed: 150,
+  };
+
+  private baseRunAnim = Animation.fromSpriteSheet(
+    playerRunSheet,
+    range(0, 7),
+    50,
+  );
+
+  private playerArm = new PlayerArm();
+
   constructor({ pos }: PlayerParams) {
     super({
       pos: pos,
@@ -22,41 +38,36 @@ class Player extends Actor {
     });
   }
 
-  activeGroundCollisions = 0;
-
-  movementConfig = {
-    jumpSpeed: 400,
-    runSpeed: 150,
-  };
-
-  baseRunAnim = Animation.fromSpriteSheet(playerRunSheet, range(0, 7), 50);
-  armRunAnim = Animation.fromSpriteSheet(playerArmRunSheet, range(0, 7), 50);
-
-  jump() {
+  private jump() {
     if (this.activeGroundCollisions > 0) {
       this.vel.y = -this.movementConfig.jumpSpeed;
     }
   }
 
-  runLeft() {
+  private runLeft() {
     this.vel.x = -this.movementConfig.runSpeed;
     this.graphics.flipHorizontal = true;
-    this.graphics.add("default", this.baseRunAnim);
+    this.graphics.use(this.baseRunAnim);
+    this.playerArm.armDirection = -1;
+    this.playerArm.animState = "run";
   }
 
-  runRight() {
+  private runRight() {
     this.vel.x = this.movementConfig.runSpeed;
     this.graphics.flipHorizontal = false;
-    this.graphics.add("default", this.baseRunAnim);
+    this.graphics.use(this.baseRunAnim);
+    this.playerArm.armDirection = 1;
+    this.playerArm.animState = "run";
   }
 
-  stopRunning() {
+  private stopRunning() {
     this.vel.x = 0;
-    this.graphics.add("default", playerRunSheet.getSprite(0, 0));
+    this.graphics.use(playerRunSheet.getSprite(0, 0));
     this.body;
+    this.playerArm.animState = "idle";
   }
 
-  playerMovement(engine: Engine) {
+  private playerMovement(engine: Engine) {
     // wasd movement with keys
     if (engine.input.keyboard.isHeld(Keys.D)) {
       this.runRight();
@@ -71,23 +82,14 @@ class Player extends Actor {
     }
   }
 
-  onPreUpdate(_engine: Engine, _delta: number): void {
-    this.isOnGround = false;
-  }
-
   public update(engine: Engine, delta: number) {
     super.update(engine, delta);
     this.playerMovement(engine);
   }
 
-  onInitialize(engine: Engine) {
+  public onInitialize(engine: Engine) {
     super.onInitialize(engine);
 
-    this.graphics.add("default", playerRunSheet.getSprite(0, 0));
-    this.graphics.add("arm", playerArmRunSheet.getSprite(0, 0));
-    this.on("pointerup", () => {
-      alert("yo");
-    });
     this.body.collisionType = CollisionType.Active;
     this.body.useGravity = true;
     this.on("collisionstart", (e): void => {
@@ -100,6 +102,8 @@ class Player extends Actor {
         this.activeGroundCollisions--;
       }
     });
+
+    this.addChild(this.playerArm);
   }
 }
 
