@@ -4,7 +4,6 @@ import {
   BodyComponent,
   CollisionType,
   Engine,
-  Keys,
   range,
   Side,
   vec,
