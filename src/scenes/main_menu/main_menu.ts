@@ -25,7 +25,7 @@ class MainMenu extends Scene {
   }
 
   startButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 318),
+    pos: vec(GAME_WIDTH / 2, 328),
     sprite: uiSpriteSheet.sprites[0],
     hoverSprite: uiSpriteSheet.sprites[1],
     onPress: () => {
@@ -34,7 +34,7 @@ class MainMenu extends Scene {
   });
 
   loadButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 318 + 40),
+    pos: vec(GAME_WIDTH / 2, 328 + 40),
     sprite: uiSpriteSheet.sprites[2],
     hoverSprite: uiSpriteSheet.sprites[3],
     onPress: () => {
@@ -43,7 +43,7 @@ class MainMenu extends Scene {
   });
 
   exitButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 318 + 40 * 2),
+    pos: vec(GAME_WIDTH / 2, 328 + 40 * 2),
     sprite: uiSpriteSheet.sprites[4],
     hoverSprite: uiSpriteSheet.sprites[5],
     onPress: () => {
@@ -52,7 +52,7 @@ class MainMenu extends Scene {
   });
 
   gunner3Logo = new StaticImage({
-    pos: vec(GAME_WIDTH / 2, 140),
+    pos: vec(GAME_WIDTH / 2, 150),
     sprite: uiSpriteSheet.sprites[6],
   });
 
