@@ -24,5 +24,11 @@ export const uiSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews({
     { x: 0, y: 245, width: 366, height: 251 },
     // gunner3 character
     { x: 366, y: 245, width: 175, height: 284 },
+    // knpmaster label
+    { x: 200, y: 144, width: 167, height: 14 },
+    // androettop label
+    { x: 200 + 167, y: 144, width: 137, height: 14 },
+    // tribute label
+    { x: 200, y: 158, width: 332, height: 14 },
   ],
 });

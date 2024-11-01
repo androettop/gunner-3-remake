@@ -4,8 +4,6 @@ import MainMenu from "./scenes/main_menu/main_menu";
 class Game extends Engine {
   constructor() {
     super({
-      width: 800,
-      height: 600,
       viewport: { width: 1280, height: 960 },
       resolution: { width: 640, height: 480 },
       antialiasing: false,

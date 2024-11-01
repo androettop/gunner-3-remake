@@ -61,6 +61,21 @@ class MainMenu extends Scene {
     sprite: uiSpriteSheet.sprites[7],
   });
 
+  knpmasterLabel = new StaticImage({
+    pos: vec(96.5, GAME_HEIGHT - 60),
+    sprite: uiSpriteSheet.sprites[8],
+  });
+
+  androettopLabel = new StaticImage({
+    pos: vec(81.5, GAME_HEIGHT - 40),
+    sprite: uiSpriteSheet.sprites[9],
+  });
+
+  tributeLabel = new StaticImage({
+    pos: vec(180, GAME_HEIGHT - 20),
+    sprite: uiSpriteSheet.sprites[10],
+  });
+
   /**
    * Start-up logic, called once
    */
@@ -84,6 +99,11 @@ class MainMenu extends Scene {
     this.add(this.startButton);
     this.add(this.loadButton);
     this.add(this.exitButton);
+
+    // draw labels
+    this.add(this.knpmasterLabel);
+    this.add(this.androettopLabel);
+    this.add(this.tributeLabel);
   }
 
   /**
