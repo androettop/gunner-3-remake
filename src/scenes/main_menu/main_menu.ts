@@ -1,5 +1,5 @@
-import { DefaultLoader, Scene, vec } from "excalibur";
-import { UiResources, uiSpriteSheet } from "../../actors/ui/resources";
+import { Scene, vec } from "excalibur";
+import { uiSpriteSheet } from "../../actors/ui/resources";
 import { SoundResources } from "../../actors/sounds/resources";
 import Button from "../../actors/ui/button";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";

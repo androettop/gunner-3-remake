@@ -1,4 +1,4 @@
-import { Color, DefaultLoader, Engine, vec } from "excalibur";
+import { Color, Engine, vec } from "excalibur";
 import MainMenu from "./scenes/main_menu/main_menu";
 import DebugScene from "./scenes/debug_scene/debug_scene";
 import { setupDebugTools } from "./debug";
