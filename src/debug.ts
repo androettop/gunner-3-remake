@@ -27,18 +27,19 @@ export const setupDebugTools = (game: Engine) => {
 
   // append debug tools to the DOM
   const debugTools = window.document.createElement("div");
-  debugTools.style.position = "fixed";
-  debugTools.style.top = "0";
-  debugTools.style.right = "0";
-  debugTools.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-  debugTools.style.color = "white";
-  debugTools.style.padding = "8px";
-  debugTools.style.zIndex = "999";
-  debugTools.innerHTML = `
-    <h2>Debug Tools</h2>
-    <ul>
-      ${debugActions.map((a) => `<li><kbd>${a.key}</kbd> - ${a.description}</li>`).join("")}
-    </ul>
-  `;
+  debugTools.className = "debug-tools";
+  const debugToolsTitle = window.document.createElement("h2");
+  debugToolsTitle.innerText = "Debug Tools";
+  debugTools.appendChild(debugToolsTitle);
+  const debugToolsList = window.document.createElement("ul");
+  debugActions.forEach((action) => {
+    const debugToolsListItem = window.document.createElement("li");
+    debugToolsListItem.innerText = `${action.key}: ${action.description}`;
+    debugToolsListItem.addEventListener("click", () => {
+      action.action(game);
+    });
+    debugToolsList.appendChild(debugToolsListItem);
+  });
+  debugTools.appendChild(debugToolsList);
   window.document.body.appendChild(debugTools);
 };

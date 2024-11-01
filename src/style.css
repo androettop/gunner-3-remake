@@ -3,6 +3,26 @@ body {
   font-family: sans-serif;
 }
 
-h2 {
+.debug-tools {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  z-index: 1000;
+  color: white;
+}
+
+.debug-tools h2 {
+  margin: 0 0 12px 0;
+}
+
+.debug-tools ul {
   margin: 0;
+  padding: 0;
+}
+
+.debug-tools li {
+  list-style-type: none;
+  cursor: pointer;
 }
