@@ -8,14 +8,13 @@ export interface GrassPlatformParams extends ActorArgs {
 }
 
 class GrassPlatform extends RigidBody {
-  constructor({ pos, rest }: GrassPlatformParams) {
+  constructor({ pos, ...rest }: GrassPlatformParams) {
     super({
       pos,
       sprite: worldSpriteSheet.sprites[2],
       collisionGroup: GroundCollisionGroup,
       ...rest,
     });
-    this.body.gro;
   }
 }
 
