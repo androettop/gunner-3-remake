@@ -1,10 +1,4 @@
-import {
-  DefaultLoader,
-  Engine,
-  Scene,
-  SceneActivationContext,
-  vec,
-} from "excalibur";
+import { DefaultLoader, Scene, vec } from "excalibur";
 import { UiResources, uiSpriteSheet } from "../../actors/ui/resources";
 import { SoundResources } from "../../actors/sounds/resources";
 import Button from "../../actors/ui/button";
@@ -79,12 +73,12 @@ class MainMenu extends Scene {
   /**
    * Start-up logic, called once
    */
-  public onInitialize(engine: Engine) {}
+  public onInitialize() {}
 
   /**
    * Each time the scene is entered (Engine.goToScene)
    */
-  public onActivate(ctx: SceneActivationContext) {
+  public onActivate() {
     // start music
     SoundResources.MainMenuMusic.loop = true;
     SoundResources.MainMenuMusic.play(0.3);
@@ -109,7 +103,7 @@ class MainMenu extends Scene {
   /**
    * Each time the scene is exited (Engine.goToScene)
    */
-  public onDeactivate(ctx: SceneActivationContext) {}
+  public onDeactivate() {}
 }
 
 export default MainMenu;

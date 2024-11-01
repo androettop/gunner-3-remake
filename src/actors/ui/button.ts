@@ -1,4 +1,4 @@
-import { Graphic, Handler, PointerEvent } from "excalibur";
+import { Handler, PointerEvent } from "excalibur";
 import StaticImage, { StaticImageParams } from "./static_image";
 
 export interface ButtonParams extends StaticImageParams {
