@@ -1,23 +1,24 @@
 import {
   Actor,
   Animation,
+  BodyComponent,
   CollisionType,
   Engine,
   Keys,
   range,
+  Side,
   vec,
   Vector,
 } from "excalibur";
 import { playerJumpSheet, playerRunSheet } from "./resources";
 import PlayerArm from "./arm";
+import { CoyoteComponent } from "../../components/input/coyote";
 
 export interface PlayerParams {
   pos: Vector;
 }
 
 class Player extends Actor {
-  private activeGroundCollisions = 0;
-
   public jumpSpeed = 400;
   public runSpeed = 150;
 
@@ -35,12 +36,21 @@ class Player extends Actor {
 
   private playerArm = new PlayerArm();
 
+  coyote = new CoyoteComponent({
+    // allow the player to jump for a short time after walking off a ledge
+    jump: {
+      time: 70,
+      condition: () => this.isOnGround,
+    },
+  });
+
   constructor({ pos }: PlayerParams) {
     super({
       pos: pos,
       width: 64,
       height: 64,
     });
+    this.addComponent(this.coyote);
   }
 
   private playerInput(engine: Engine) {
@@ -60,8 +70,10 @@ class Player extends Actor {
   }
 
   private updatePlayerState(engine: Engine) {
-    this.isOnGround = this.activeGroundCollisions > 0;
     this.playerInput(engine);
+    if (this.vel.y > 0) {
+      this.isOnGround = false;
+    }
   }
 
   private executePlayerActions() {
@@ -71,7 +83,9 @@ class Player extends Actor {
       this.vel.x = 0;
     }
 
-    if (this.wantsJump && this.isOnGround) {
+    if (this.wantsJump && (this.isOnGround || this.coyote.allow("jump"))) {
+      this.isOnGround = false;
+      this.coyote.reset("jump");
       this.vel.y = -this.jumpSpeed;
     }
   }
@@ -100,24 +114,40 @@ class Player extends Actor {
     this.animatePlayer();
   }
 
+  onCollisionStart(
+    _self: ex.Collider,
+    other: ex.Collider,
+    side: ex.Side,
+    contact: ex.CollisionContact,
+  ): void {
+    if (contact.isCanceled()) {
+      return;
+    }
+
+    const otherBody = other.owner.get(BodyComponent);
+
+    if (
+      otherBody?.collisionType === CollisionType.Fixed ||
+      otherBody?.collisionType === CollisionType.Active
+    ) {
+      const wasInAir = this.oldVel.y > 0;
+
+      // player landed on the ground
+      if (side === Side.Bottom && wasInAir) {
+        this.isOnGround = true;
+      }
+    }
+  }
+
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
+
+    console.log(this);
 
     this.body.collisionType = CollisionType.Active;
     this.body.useGravity = true;
 
     this.collider.useBoxCollider(22, 45, vec(0, 0), vec(-11, -13));
-
-    this.on("collisionstart", (e): void => {
-      if (e.side === "Bottom") {
-        this.activeGroundCollisions++;
-      }
-    });
-    this.on("collisionend", (e): void => {
-      if (e.side === "Bottom") {
-        this.activeGroundCollisions--;
-      }
-    });
 
     this.addChild(this.playerArm);
   }
