@@ -1,30 +1,26 @@
-import { Actor, SpriteSheet, vec } from "excalibur";
-import { PlayerResources } from "./resources";
+import { Actor, CollisionType, Vector } from "excalibur";
+import { playerSpriteSheet } from "./resources";
 
-const spriteSheet = SpriteSheet.fromImageSource({
-  image: PlayerResources.PlayerSprites,
-  grid: {
-    rows: 8,
-    columns: 8,
-    spriteWidth: 64,
-    spriteHeight: 64,
-  },
-});
+export interface PlayerParams {
+  pos: Vector;
+}
 
 class Player extends Actor {
-  constructor() {
+  constructor({ pos }: PlayerParams) {
     super({
-      pos: vec(150, 150),
+      pos: pos,
       width: 64,
       height: 64,
     });
   }
 
   onInitialize() {
-    this.graphics.add(spriteSheet.getSprite(0, 0));
+    this.graphics.add(playerSpriteSheet.getSprite(0, 0));
     this.on("pointerup", () => {
       alert("yo");
     });
+    this.body.collisionType = CollisionType.Active;
+    this.body.useGravity = true;
   }
 }
 

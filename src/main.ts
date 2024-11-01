@@ -1,4 +1,4 @@
-import { Color, Engine } from "excalibur";
+import { Color, Engine, vec } from "excalibur";
 import MainMenu from "./scenes/main_menu/main_menu";
 import DebugScene from "./scenes/debug_scene/debug_scene";
 import { setupDebugTools } from "./debug";
@@ -11,6 +11,8 @@ class Game extends Engine {
       antialiasing: false,
       backgroundColor: Color.Black,
     });
+
+    this.physics.gravity = vec(0, 800);
   }
   initialize() {
     this.add("main_menu", new MainMenu());
