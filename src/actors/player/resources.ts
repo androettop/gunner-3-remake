@@ -5,12 +5,27 @@ export const PlayerResources = {
   PlayerSprites: new ImageSource(playerSprites),
 } as const;
 
-export const playerSpriteSheet = SpriteSheet.fromImageSource({
+export const playerRunSheet = SpriteSheet.fromImageSource({
   image: PlayerResources.PlayerSprites,
   grid: {
-    rows: 8,
+    rows: 1,
     columns: 8,
     spriteWidth: 64,
     spriteHeight: 64,
+  },
+});
+
+export const playerArmRunSheet = SpriteSheet.fromImageSource({
+  image: PlayerResources.PlayerSprites,
+  grid: {
+    rows: 1,
+    columns: 8,
+    spriteWidth: 64,
+    spriteHeight: 64,
+  },
+  spacing: {
+    margin: {
+      y: 64,
+    },
   },
 });

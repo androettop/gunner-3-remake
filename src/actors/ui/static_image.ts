@@ -1,6 +1,6 @@
-import { Actor, Graphic, Vector } from "excalibur";
+import { Actor, ActorArgs, Graphic, Vector } from "excalibur";
 
-export interface StaticImageParams {
+export interface StaticImageParams extends ActorArgs {
   pos: Vector;
   sprite: Graphic;
   hoverSprite?: Graphic;
@@ -12,11 +12,18 @@ class StaticImage extends Actor {
   hoverSprite?: Graphic;
   activeSprite?: Graphic;
 
-  constructor({ pos, sprite, hoverSprite, activeSprite }: StaticImageParams) {
+  constructor({
+    pos,
+    sprite,
+    hoverSprite,
+    activeSprite,
+    ...rest
+  }: StaticImageParams) {
     super({
       pos: pos,
       width: sprite.width,
       height: sprite.height,
+      ...rest,
     });
 
     this.sprite = sprite;

@@ -30,11 +30,14 @@ class DebugScene extends Scene {
     const player = new Player({
       pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
     });
-    const glassPlatform = new GrassPlatform({
-      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT - 10),
-    });
     this.add(player);
-    this.add(glassPlatform);
+
+    for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
+      const grassPlatform = new GrassPlatform({
+        pos: vec(32 + i * 64, GAME_HEIGHT - 10),
+      });
+      this.add(grassPlatform);
+    }
   }
 
   /**
