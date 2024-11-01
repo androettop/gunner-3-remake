@@ -5,6 +5,7 @@ import {
   Engine,
   Keys,
   range,
+  vec,
   Vector,
 } from "excalibur";
 import { playerJumpSheet, playerRunSheet } from "./resources";
@@ -70,7 +71,7 @@ class Player extends Actor {
       this.vel.x = 0;
     }
 
-    if (this.wantsJump) {
+    if (this.wantsJump && this.isOnGround) {
       this.vel.y = -this.jumpSpeed;
     }
   }
@@ -84,6 +85,7 @@ class Player extends Actor {
       this.graphics.use(playerRunSheet.getSprite(0, 0));
     }
     this.graphics.flipHorizontal = this.direction < 0;
+    this.graphics.offset.x = -2 * this.direction;
   }
 
   public update(engine: Engine, delta: number) {
@@ -103,6 +105,9 @@ class Player extends Actor {
 
     this.body.collisionType = CollisionType.Active;
     this.body.useGravity = true;
+
+    this.collider.useBoxCollider(22, 45, vec(0, 0), vec(-11, -13));
+
     this.on("collisionstart", (e): void => {
       if (e.side === "Bottom") {
         this.activeGroundCollisions++;

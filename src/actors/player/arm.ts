@@ -37,6 +37,7 @@ class PlayerArm extends Actor {
       this.graphics.use(playerArmRunSheet.getSprite(0, 0));
     }
     this.graphics.flipHorizontal = this.direction < 0;
+    this.graphics.offset.x = -2 * this.direction;
   }
 
   public update() {
@@ -47,6 +48,7 @@ class PlayerArm extends Actor {
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
     this.body.collisionType = CollisionType.PreventCollision;
+    this.collider.useBoxCollider(0, 0);
   }
 }
 

@@ -38,6 +38,11 @@ class DebugScene extends Scene {
       });
       this.add(grassPlatform);
     }
+
+    const grassPlatform2 = new GrassPlatform({
+      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT - 100),
+    });
+    this.add(grassPlatform2);
   }
 
   /**
