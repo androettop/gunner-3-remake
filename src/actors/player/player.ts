@@ -92,16 +92,23 @@ class Player extends Actor {
   }
 
   private playerInput(engine: Engine) {
+    let newDirection = 0;
+
     // wasd movement with keys
     if (
       GAME_CONTROLS.MOVE_RIGHT.some((key) => engine.input.keyboard.isHeld(key))
     ) {
-      this.direction = 1;
-      this.isRunning = true;
-    } else if (
+      newDirection += 1;
+    }
+
+    if (
       GAME_CONTROLS.MOVE_LEFT.some((key) => engine.input.keyboard.isHeld(key))
     ) {
-      this.direction = -1;
+      newDirection -= 1;
+    }
+
+    if (newDirection !== 0) {
+      this.direction = newDirection > 0 ? 1 : -1;
       this.isRunning = true;
     } else {
       this.isRunning = false;
