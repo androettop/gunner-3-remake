@@ -15,6 +15,7 @@ import { CoyoteComponent } from "../../components/input/coyote";
 import { GAME_CONTROLS } from "../../helpers/consts";
 import Weapon from "../weapons/weapon";
 import WpPistol from "../weapons/wp_pistol";
+import WpShotgun from "../weapons/wp_shotgun";
 
 export interface PlayerParams {
   pos: Vector;
@@ -32,9 +33,9 @@ class Player extends Actor {
 
   private _health = 10; // form 10 to 0
 
-  public weapons: Weapon[] = [new WpPistol()];
+  public weapons: Weapon[] = [new WpPistol(), new WpShotgun()];
 
-  public enabledWeapons: number[] = []; // 0 is always enabled
+  public enabledWeapons: number[] = [0, 1]; // 0 is always enabled
 
   private _activeWeaponIndex = 0;
 
@@ -197,6 +198,14 @@ class Player extends Actor {
       }
       this._activeWeapon = this.weapons[this._activeWeaponIndex];
       this.addChild(this._activeWeapon);
+
+      if (this._activeWeapon.twoHanded) {
+        if (this.children.includes(this.playerArm)) {
+          this.removeChild(this.playerArm);
+        }
+      } else if (!this.children.includes(this.playerArm)) {
+        this.addChild(this.playerArm);
+      }
     }
   }
 
@@ -211,7 +220,6 @@ class Player extends Actor {
 
     this.collider.useBoxCollider(22, 45, vec(0, 0), vec(-11, -13));
 
-    this.addChild(this.playerArm);
     this.activateWeapon(true);
   }
 }

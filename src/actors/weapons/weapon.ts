@@ -3,6 +3,8 @@ import { Actor, ActorArgs, CollisionType, Engine, vec } from "excalibur";
 export interface WeaponParams extends ActorArgs {}
 
 abstract class Weapon extends Actor {
+  abstract readonly twoHanded: boolean;
+
   constructor(params?: WeaponParams) {
     super({
       pos: vec(0, 0),

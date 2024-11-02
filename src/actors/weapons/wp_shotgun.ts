@@ -1,9 +1,9 @@
 import Weapon from "./weapon";
 import Player from "../player/player";
-import { weapon01SpriteSheet } from "./resources";
+import { weapon02SpriteSheet } from "./resources";
 
-class WpPistol extends Weapon {
-  public readonly twoHanded = false;
+class WpShotgun extends Weapon {
+  public readonly twoHanded = true;
 
   shoot() {
     console.log("shoot");
@@ -14,7 +14,7 @@ class WpPistol extends Weapon {
     if (!player) {
       return;
     }
-    this.graphics.use(weapon01SpriteSheet.getSprite(0, 0));
+    this.graphics.use(weapon02SpriteSheet.getSprite(0, 0));
     this.graphics.flipHorizontal = player.direction < 0;
     this.graphics.offset.x = -2 * player.direction;
   }
@@ -24,4 +24,4 @@ class WpPistol extends Weapon {
   }
 }
 
-export default WpPistol;
+export default WpShotgun;
