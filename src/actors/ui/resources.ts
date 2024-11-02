@@ -2,6 +2,9 @@ import { ImageSource, SpriteSheet } from "excalibur";
 import uiSprites from "../../assets/images/hub/ui.png";
 
 export const UiResources = {
+  BlankImage: new ImageSource(
+    "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+  ),
   UiSprites: new ImageSource(uiSprites),
 } as const;
 

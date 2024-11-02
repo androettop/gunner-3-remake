@@ -4,6 +4,7 @@ export interface WeaponParams extends ActorArgs {}
 
 abstract class Weapon extends Actor {
   abstract readonly twoHanded: boolean;
+  abstract readonly label: string;
 
   constructor(params?: WeaponParams) {
     super({

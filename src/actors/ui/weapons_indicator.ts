@@ -1,9 +1,10 @@
-import { Actor, ImageSource, vec } from "excalibur";
+import { Actor, Text, vec } from "excalibur";
 import { getPlayer } from "../../helpers/player";
-import { weaponsIndicatorSpriteSheet } from "./resources";
+import { UiResources, weaponsIndicatorSpriteSheet } from "./resources";
 import Player from "../player/player";
 import { WEAPONS_COUNT } from "../../helpers/consts";
 import StaticImage from "./static_image";
+import { spriteFont1 } from "../text/resources";
 
 class WeaponsIndicator extends Actor {
   player?: Player;
@@ -19,7 +20,7 @@ class WeaponsIndicator extends Actor {
   lastActiveWeapon: number | null = null;
 
   private updateWeaponSprite(weapon: number, active: boolean) {
-    const weaponIndicator = this.children[weapon] as StaticImage;
+    const weaponIndicator = this.children[weapon + 1] as StaticImage;
     // 20 weapons per row
     let column = weapon % 20;
     let row = Math.floor(weapon / 20);
@@ -27,6 +28,16 @@ class WeaponsIndicator extends Actor {
       column,
       row + (active ? 2 : 0),
     );
+
+    // update text
+    if (active && this.player) {
+      const textActor = this.children[0] as StaticImage;
+      const text = new Text({
+        text: `${weapon + 1}.${this.player.weapons[weapon].label}`,
+        font: spriteFont1,
+      });
+      textActor.sprite = text;
+    }
   }
 
   public update() {
@@ -57,15 +68,27 @@ class WeaponsIndicator extends Actor {
   }
 
   public onInitialize() {
+    // add weapon text
+    const text = new Text({
+      text: "Hola as7861287368&)&",
+      font: spriteFont1,
+    });
+
+    const textIndicator = new StaticImage({
+      pos: vec(0, 0),
+      sprite: text,
+    });
+
+    this.addChild(textIndicator);
+
+    // add all weapon indicators
     for (let i = 0; i < WEAPONS_COUNT; i++) {
       // 20 weapons per row
       let column = i % 20;
       let row = Math.floor(i / 20);
       const weaponIndicator = new StaticImage({
-        pos: vec(column * 22, row * 22),
-        sprite: new ImageSource(
-          "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-        ).toSprite(),
+        pos: vec(column * 22, 12 + row * 22),
+        sprite: UiResources.BlankImage.toSprite(),
       });
       this.addChild(weaponIndicator);
     }

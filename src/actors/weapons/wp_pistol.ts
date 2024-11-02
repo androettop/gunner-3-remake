@@ -4,6 +4,7 @@ import { weapon01SpriteSheet } from "./resources";
 
 class WpPistol extends Weapon {
   public readonly twoHanded = false;
+  public readonly label = "Pistol";
 
   shoot() {
     console.log("shoot");
