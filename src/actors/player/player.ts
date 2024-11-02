@@ -29,6 +29,7 @@ class Player extends Actor {
   private isDiyng = false;
 
   public direction: 1 | -1 = 1;
+  public aimDirection: 0 | 1 | -1 = 0;
   public isRunning = false;
   public isOnGround = false;
 
@@ -117,6 +118,17 @@ class Player extends Actor {
       this.isRunning = true;
     } else {
       this.isRunning = false;
+    }
+
+    // aim up and down
+    if (GAME_CONTROLS.AIM_UP.some((key) => engine.input.keyboard.isHeld(key))) {
+      this.aimDirection = -1;
+    } else if (
+      GAME_CONTROLS.AIM_DOWN.some((key) => engine.input.keyboard.isHeld(key))
+    ) {
+      this.aimDirection = 1;
+    } else {
+      this.aimDirection = 0;
     }
 
     // jump

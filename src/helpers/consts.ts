@@ -7,6 +7,8 @@ export const WEAPONS_COUNT = 22;
 export const GAME_CONTROLS = {
   MOVE_LEFT: [Keys.Left],
   MOVE_RIGHT: [Keys.Right],
+  AIM_UP: [Keys.Up],
+  AIM_DOWN: [Keys.Down],
   JUMP: [Keys.ShiftLeft, Keys.ShiftRight, Keys.Space],
   SHOOT: [Keys.ControlRight, Keys.ControlLeft],
   ROLL: [Keys.Z, Keys.Enter],

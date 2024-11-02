@@ -4,6 +4,7 @@ import {
   CollisionType,
   Engine,
   Sound,
+  toRadians,
   vec,
   Vector,
 } from "excalibur";
@@ -41,12 +42,27 @@ abstract class Weapon extends Actor {
 
     this.shootSound.play();
 
+    // player.direction -1 is left, 1 is right
+    // player.aimDirection -1 is up (45 degree), 0 is straight, 1 is down (45 degree)
+    // get direction in radians taking both into account
+
+    let directionAngle =
+      player.aimDirection === 0
+        ? 0
+        : player.aimDirection === -1
+          ? toRadians(-45)
+          : toRadians(45);
+
+    if (player.direction === -1) {
+      directionAngle = toRadians(180) - directionAngle;
+    }
+
     // @ts-ignore: The projectile will extend the Projectile class.
     const projectile = new ProjectileClass({
       pos: player.pos
         .clone()
         .add(vec(this.weaponSize.x * player.direction, this.weaponSize.y)),
-      directionAngle: player.direction < 0 ? Math.PI : 0,
+      directionAngle,
     });
     this.scene?.add(projectile);
   }

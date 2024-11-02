@@ -1,10 +1,21 @@
-import { Actor, ActorArgs, CollisionType, Engine, vec } from "excalibur";
+import {
+  Actor,
+  ActorArgs,
+  CollisionType,
+  Engine,
+  vec,
+  Vector,
+} from "excalibur";
 
 export interface ProjectileParams extends ActorArgs {
   /**
    * The angle in radians to fire the projectile
    */
   directionAngle: number;
+  /**
+   * The base velocity of the projectile
+   */
+  baseVelocity: Vector;
 }
 
 abstract class Projectile extends Actor {
