@@ -51,6 +51,18 @@ class DebugScene extends Scene {
       this.add(dirtBlock2);
     }
 
+    // add 1 columns of DirtBlock (64x64) at the left  and right of the screen
+    for (let i = 0; i < Math.ceil(GAME_HEIGHT / 64); i++) {
+      const dirtBlock = new DirtBlock({
+        pos: vec(-64, i * 64),
+      });
+      this.add(dirtBlock);
+      const dirtBlock2 = new DirtBlock({
+        pos: vec(GAME_WIDTH, i * 64),
+      });
+      this.add(dirtBlock2);
+    }
+
     // add the grass platform
     for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
       const grassPlatform = new GrassPlatform({
