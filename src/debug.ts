@@ -1,4 +1,5 @@
 import { Engine } from "excalibur";
+import { getPlayer } from "./helpers/player";
 
 export type DebugAction = {
   key: string;
@@ -19,6 +20,22 @@ export const debugActions: DebugAction[] = [
     description: "Debug scene",
     action: (game) => {
       game.goToScene("debug_scene");
+    },
+  },
+  {
+    key: "3",
+    description: "-1 Health",
+    action: (game) => {
+      const player = getPlayer(game.currentScene);
+      player.health--;
+    },
+  },
+  {
+    key: "4",
+    description: "+1 Health",
+    action: (game) => {
+      const player = getPlayer(game.currentScene);
+      player.health++;
     },
   },
 ];

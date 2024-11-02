@@ -3,6 +3,7 @@ import { SoundResources } from "../../actors/sounds/resources";
 import Player from "../../actors/player/player";
 import GrassPlatform from "../../actors/world/grass_platform";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
+import HealtIndicator from "../../actors/ui/healt_indicator";
 class DebugScene extends Scene {
   /**
    * Start-up logic, called once
@@ -20,7 +21,12 @@ class DebugScene extends Scene {
     const player = new Player({
       pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
     });
+
+    const healtIndicator = new HealtIndicator();
+
     this.add(player);
+
+    this.add(healtIndicator);
 
     for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
       const grassPlatform = new GrassPlatform({

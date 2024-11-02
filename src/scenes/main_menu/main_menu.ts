@@ -1,5 +1,5 @@
 import { Scene, vec } from "excalibur";
-import { uiSpriteSheet } from "../../actors/ui/resources";
+import { mainMenuSpriteSheet } from "../../actors/ui/resources";
 import { SoundResources } from "../../actors/sounds/resources";
 import Button from "../../actors/ui/button";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
@@ -8,8 +8,8 @@ import StaticImage from "../../actors/ui/static_image";
 class MainMenu extends Scene {
   startButton = new Button({
     pos: vec(GAME_WIDTH / 2, 328),
-    sprite: uiSpriteSheet.sprites[0],
-    hoverSprite: uiSpriteSheet.sprites[1],
+    sprite: mainMenuSpriteSheet.sprites[0],
+    hoverSprite: mainMenuSpriteSheet.sprites[1],
     onPress: () => {
       console.log("Start button pressed");
     },
@@ -17,8 +17,8 @@ class MainMenu extends Scene {
 
   loadButton = new Button({
     pos: vec(GAME_WIDTH / 2, 328 + 40),
-    sprite: uiSpriteSheet.sprites[2],
-    hoverSprite: uiSpriteSheet.sprites[3],
+    sprite: mainMenuSpriteSheet.sprites[2],
+    hoverSprite: mainMenuSpriteSheet.sprites[3],
     onPress: () => {
       console.log("Load button pressed");
     },
@@ -26,8 +26,8 @@ class MainMenu extends Scene {
 
   exitButton = new Button({
     pos: vec(GAME_WIDTH / 2, 328 + 40 * 2),
-    sprite: uiSpriteSheet.sprites[4],
-    hoverSprite: uiSpriteSheet.sprites[5],
+    sprite: mainMenuSpriteSheet.sprites[4],
+    hoverSprite: mainMenuSpriteSheet.sprites[5],
     onPress: () => {
       console.log("Exit button pressed");
     },
@@ -35,27 +35,27 @@ class MainMenu extends Scene {
 
   gunner3Logo = new StaticImage({
     pos: vec(GAME_WIDTH / 2, 150),
-    sprite: uiSpriteSheet.sprites[6],
+    sprite: mainMenuSpriteSheet.sprites[6],
   });
 
   gunner3Character = new StaticImage({
     pos: vec(GAME_WIDTH - 120, GAME_HEIGHT - 170),
-    sprite: uiSpriteSheet.sprites[7],
+    sprite: mainMenuSpriteSheet.sprites[7],
   });
 
   knpmasterLabel = new StaticImage({
     pos: vec(96.5, GAME_HEIGHT - 20),
-    sprite: uiSpriteSheet.sprites[8],
+    sprite: mainMenuSpriteSheet.sprites[8],
   });
 
   androettopLabel = new StaticImage({
     pos: vec(81.5, GAME_HEIGHT - 40),
-    sprite: uiSpriteSheet.sprites[9],
+    sprite: mainMenuSpriteSheet.sprites[9],
   });
 
   tributeLabel = new StaticImage({
     pos: vec(180, GAME_HEIGHT - 20),
-    sprite: uiSpriteSheet.sprites[10],
+    sprite: mainMenuSpriteSheet.sprites[10],
   });
 
   /**

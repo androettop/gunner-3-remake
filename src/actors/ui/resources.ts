@@ -5,7 +5,7 @@ export const UiResources = {
   UiSprites: new ImageSource(uiSprites),
 } as const;
 
-export const uiSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews({
+export const mainMenuSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews({
   image: UiResources.UiSprites,
   sourceViews: [
     // start button
@@ -31,4 +31,20 @@ export const uiSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews({
     // tribute label
     { x: 200, y: 158, width: 332, height: 14 },
   ],
+});
+
+export const healthIndicatorSpriteSheet = SpriteSheet.fromImageSource({
+  image: UiResources.UiSprites,
+  grid: {
+    rows: 1,
+    columns: 11,
+    spriteWidth: 32,
+    spriteHeight: 86,
+  },
+  spacing: {
+    originOffset: {
+      x: 220,
+      y: 58,
+    },
+  },
 });

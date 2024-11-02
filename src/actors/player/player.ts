@@ -28,6 +28,16 @@ class Player extends Actor {
   public isRunning = false;
   public isOnGround = false;
 
+  public _health = 10; // form 10 to 0
+
+  public get health() {
+    return this._health;
+  }
+
+  public set health(value: number) {
+    this._health = value > 10 ? 10 : value < 0 ? 0 : value;
+  }
+
   private runAnimation = Animation.fromSpriteSheet(
     playerRunSheet,
     range(0, 7),
@@ -49,6 +59,7 @@ class Player extends Actor {
       pos: pos,
       width: 64,
       height: 64,
+      name: "player",
     });
     this.addComponent(this.coyote);
   }
