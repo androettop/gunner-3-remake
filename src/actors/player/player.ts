@@ -1,11 +1,9 @@
 import {
   Actor,
   Animation,
-  BodyComponent,
   CollisionType,
   Engine,
   range,
-  Side,
   vec,
   Vector,
 } from "excalibur";
@@ -128,11 +126,20 @@ class Player extends Actor {
     );
   }
 
-  private updatePlayerState(engine: Engine) {
-    this.playerInput(engine);
-    if (this.vel.y > 0) {
+  private updateGroundedState() {
+    // All the game surfaces are flat, so we can just check if the player is moving vertically
+    if (this.vel.y !== 0) {
       this.isOnGround = false;
     }
+    if (this.vel.y === 0 && this.oldVel.y === 0) {
+      // here we check oldVel to make sure we are not just starting to fall
+      this.isOnGround = true;
+    }
+  }
+
+  private updatePlayerState(engine: Engine) {
+    this.playerInput(engine);
+    this.updateGroundedState();
   }
 
   private executePlayerActions() {
@@ -143,7 +150,6 @@ class Player extends Actor {
     }
 
     if (this.wantsJump && (this.isOnGround || this.coyote.allow("jump"))) {
-      this.isOnGround = false;
       this.coyote.reset("jump");
       this.vel.y = -this.jumpSpeed;
     }
@@ -171,31 +177,6 @@ class Player extends Actor {
 
     // Animate player
     this.animatePlayer();
-  }
-
-  onCollisionStart(
-    _self: ex.Collider,
-    other: ex.Collider,
-    side: ex.Side,
-    contact: ex.CollisionContact,
-  ): void {
-    if (contact.isCanceled()) {
-      return;
-    }
-
-    const otherBody = other.owner.get(BodyComponent);
-
-    if (
-      otherBody?.collisionType === CollisionType.Fixed ||
-      otherBody?.collisionType === CollisionType.Active
-    ) {
-      const wasInAir = this.oldVel.y > 0;
-
-      // player landed on the ground
-      if (side === Side.Bottom && wasInAir) {
-        this.isOnGround = true;
-      }
-    }
   }
 
   public activateWeapon(init: boolean = false) {
