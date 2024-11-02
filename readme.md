@@ -33,8 +33,8 @@ Try the game [here](https://androettop.github.io/gunner-3-remake/)
 ### Weapons
 
 - [x] Base weapon
-- [ ] Base projectile
-- [ ] Pistol
+- [x] Base projectile
+- [x] Pistol
 - [ ] Shotgun
 
 ### Menus
