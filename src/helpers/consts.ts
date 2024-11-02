@@ -1,4 +1,4 @@
-import { CollisionGroupManager, Keys } from "excalibur";
+import { Keys } from "excalibur";
 
 export const GAME_WIDTH = 640;
 export const GAME_HEIGHT = 480;
@@ -10,5 +10,3 @@ export const GAME_CONTROLS = {
   SHOOT: [Keys.ControlRight, Keys.ControlLeft],
   ROLL: [Keys.Z, Keys.Enter],
 };
-
-export const GroundCollisionGroup = CollisionGroupManager.create("ground");

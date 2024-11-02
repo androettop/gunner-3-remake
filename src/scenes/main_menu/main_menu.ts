@@ -7,55 +7,51 @@ import StaticImage from "../../actors/ui/static_image";
 
 class MainMenu extends Scene {
   startButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 328),
+    pos: vec(GAME_WIDTH / 2, 320),
     sprite: mainMenuSpriteSheet.sprites[0],
     hoverSprite: mainMenuSpriteSheet.sprites[1],
+    anchor: vec(0.5, 0),
     onPress: () => {
       console.log("Start button pressed");
     },
   });
 
   loadButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 328 + 40),
+    pos: vec(GAME_WIDTH / 2, 320 + 40),
     sprite: mainMenuSpriteSheet.sprites[2],
     hoverSprite: mainMenuSpriteSheet.sprites[3],
+    anchor: vec(0.5, 0),
     onPress: () => {
       console.log("Load button pressed");
     },
   });
 
   exitButton = new Button({
-    pos: vec(GAME_WIDTH / 2, 328 + 40 * 2),
+    pos: vec(GAME_WIDTH / 2, 320 + 40 * 2),
     sprite: mainMenuSpriteSheet.sprites[4],
     hoverSprite: mainMenuSpriteSheet.sprites[5],
+    anchor: vec(0.5, 0),
     onPress: () => {
       console.log("Exit button pressed");
     },
   });
 
   gunner3Logo = new StaticImage({
-    pos: vec(GAME_WIDTH / 2, 150),
+    pos: vec(GAME_WIDTH / 2, 32),
+    anchor: vec(0.5, 0),
     sprite: mainMenuSpriteSheet.sprites[6],
   });
 
   gunner3Character = new StaticImage({
-    pos: vec(GAME_WIDTH - 120, GAME_HEIGHT - 170),
+    pos: vec(GAME_WIDTH - 32, GAME_HEIGHT - 32),
+    anchor: vec(1, 1),
     sprite: mainMenuSpriteSheet.sprites[7],
   });
 
   knpmasterLabel = new StaticImage({
-    pos: vec(96.5, GAME_HEIGHT - 20),
+    pos: vec(10, GAME_HEIGHT - 10),
+    anchor: vec(0, 1),
     sprite: mainMenuSpriteSheet.sprites[8],
-  });
-
-  androettopLabel = new StaticImage({
-    pos: vec(81.5, GAME_HEIGHT - 40),
-    sprite: mainMenuSpriteSheet.sprites[9],
-  });
-
-  tributeLabel = new StaticImage({
-    pos: vec(180, GAME_HEIGHT - 20),
-    sprite: mainMenuSpriteSheet.sprites[10],
   });
 
   /**

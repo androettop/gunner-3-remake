@@ -19,7 +19,7 @@ export interface PlayerParams {
 }
 
 class Player extends Actor {
-  public jumpSpeed = 500;
+  public jumpSpeed = 515;
   public runSpeed = 160;
 
   public wantsJump = false;

@@ -26,3 +26,15 @@ export const worldSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews({
     { x: 320, y: 0, width: 64, height: 20 },
   ],
 });
+
+export const backgroundSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews(
+  {
+    image: WorldResources.WorldSprites,
+    sourceViews: [
+      // blue sky
+      { x: 640, y: 64, width: 64, height: 192 },
+      // red sky
+      { x: 704, y: 64, width: 64, height: 448 },
+    ],
+  },
+);

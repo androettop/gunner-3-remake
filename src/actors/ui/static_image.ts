@@ -3,8 +3,11 @@ import { Actor, ActorArgs, Graphic, Vector } from "excalibur";
 export interface StaticImageParams extends ActorArgs {
   pos: Vector;
   sprite: Graphic;
+  anchor?: Vector;
   hoverSprite?: Graphic;
   activeSprite?: Graphic;
+  width?: number;
+  height?: number;
 }
 
 class StaticImage extends Actor {
@@ -15,14 +18,18 @@ class StaticImage extends Actor {
   constructor({
     pos,
     sprite,
+    anchor = Vector.Zero,
     hoverSprite,
     activeSprite,
+    width = sprite.width,
+    height = sprite.height,
     ...rest
   }: StaticImageParams) {
     super({
       pos: pos,
-      width: sprite.width,
-      height: sprite.height,
+      width,
+      height,
+      anchor,
       ...rest,
     });
 

@@ -14,8 +14,9 @@ class Button extends StaticImage {
     hoverSprite,
     activeSprite,
     onPress,
+    ...rest
   }: ButtonParams) {
-    super({ pos, sprite, hoverSprite, activeSprite });
+    super({ pos, sprite, hoverSprite, activeSprite, ...rest });
 
     this.onPress = onPress;
   }
