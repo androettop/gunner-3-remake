@@ -3,6 +3,7 @@ import Player from "../player/player";
 import { weapon02SpriteSheet } from "./resources";
 import PBullet from "../projectile/p_bullet";
 import { vec } from "excalibur";
+import { SoundResources } from "../sounds/resources";
 
 class WpShotgun extends Weapon {
   public readonly twoHanded = true;
@@ -10,6 +11,7 @@ class WpShotgun extends Weapon {
   public readonly projectileType = PBullet;
   public readonly weaponSize = vec(20, 6);
   public readonly shootThrottle = 100;
+  public readonly shootSound = SoundResources.Weapon01Sound;
 
   public animateWeapon() {
     const player = this.parent as Player | null;

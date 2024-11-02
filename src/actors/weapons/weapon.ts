@@ -3,6 +3,7 @@ import {
   ActorArgs,
   CollisionType,
   Engine,
+  Sound,
   vec,
   Vector,
 } from "excalibur";
@@ -17,6 +18,7 @@ abstract class Weapon extends Actor {
   abstract readonly projectileType: typeof Projectile;
   abstract readonly weaponSize: Vector;
   abstract readonly shootThrottle: number;
+  abstract readonly shootSound: Sound;
 
   private isWeaponShooting = false;
 
@@ -36,6 +38,8 @@ abstract class Weapon extends Actor {
     }
     console.log(player);
     const ProjectileClass = this.projectileType;
+
+    this.shootSound.play();
 
     // @ts-ignore: The projectile will extend the Projectile class.
     const projectile = new ProjectileClass({
