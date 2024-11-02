@@ -13,6 +13,8 @@ import { playerJumpSheet, playerRunSheet } from "./resources";
 import PlayerArm from "./arm";
 import { CoyoteComponent } from "../../components/input/coyote";
 import { GAME_CONTROLS } from "../../helpers/consts";
+import Weapon from "../weapons/weapon";
+import WpPistol from "../weapons/wp_pistol";
 
 export interface PlayerParams {
   pos: Vector;
@@ -28,7 +30,31 @@ class Player extends Actor {
   public isRunning = false;
   public isOnGround = false;
 
-  public _health = 10; // form 10 to 0
+  private _health = 10; // form 10 to 0
+
+  public weapons: Weapon[] = [new WpPistol()];
+
+  public enabledWeapons: number[] = []; // 0 is always enabled
+
+  private _activeWeaponIndex = 0;
+
+  private _activeWeapon: Weapon | null = null;
+
+  public get activeWeapon() {
+    return this._activeWeaponIndex;
+  }
+
+  public set activeWeapon(value: number) {
+    if (
+      (this.enabledWeapons.includes(value) || value === 0) &&
+      this.weapons[value]
+    ) {
+      this._activeWeaponIndex = value;
+      this.activateWeapon();
+    } else {
+      console.warn(`Weapon ${value + 1} is not enabled`);
+    }
+  }
 
   public get health() {
     return this._health;
@@ -79,6 +105,14 @@ class Player extends Actor {
     } else {
       this.isRunning = false;
     }
+
+    // weapon switching
+
+    GAME_CONTROLS.WEAPON_SWITCH.forEach((keys, index) => {
+      if (keys.some((key) => engine.input.keyboard.wasPressed(key))) {
+        this.activeWeapon = index;
+      }
+    });
 
     // jump
     this.wantsJump = GAME_CONTROLS.JUMP.some((key) =>
@@ -156,6 +190,16 @@ class Player extends Actor {
     }
   }
 
+  public activateWeapon(init: boolean = false) {
+    if (init || this.isInitialized) {
+      if (this._activeWeapon) {
+        this.removeChild(this._activeWeapon);
+      }
+      this._activeWeapon = this.weapons[this._activeWeaponIndex];
+      this.addChild(this._activeWeapon);
+    }
+  }
+
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
 
@@ -168,6 +212,7 @@ class Player extends Actor {
     this.collider.useBoxCollider(22, 45, vec(0, 0), vec(-11, -13));
 
     this.addChild(this.playerArm);
+    this.activateWeapon(true);
   }
 }
 

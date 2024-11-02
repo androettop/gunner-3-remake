@@ -42,10 +42,12 @@ export const debugActions: DebugAction[] = [
 
 export const setupDebugTools = (game: Engine) => {
   window.document.addEventListener("keypress", (e) => {
-    const key = e.key;
-    const action = debugActions.find((a) => a.key === key);
-    if (action) {
-      action.action(game);
+    if (e.ctrlKey) {
+      const key = e.key;
+      const action = debugActions.find((a) => a.key === key);
+      if (action) {
+        action.action(game);
+      }
     }
   });
 
@@ -58,7 +60,7 @@ export const setupDebugTools = (game: Engine) => {
   const debugToolsList = window.document.createElement("ul");
   debugActions.forEach((action) => {
     const debugToolsListItem = window.document.createElement("li");
-    debugToolsListItem.innerText = `${action.key}: ${action.description}`;
+    debugToolsListItem.innerText = `Alt+${action.key}: ${action.description}`;
     debugToolsListItem.addEventListener("click", () => {
       action.action(game);
     });
