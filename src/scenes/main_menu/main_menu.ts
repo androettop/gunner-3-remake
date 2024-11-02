@@ -44,7 +44,7 @@ class MainMenu extends Scene {
   });
 
   knpmasterLabel = new StaticImage({
-    pos: vec(96.5, GAME_HEIGHT - 60),
+    pos: vec(96.5, GAME_HEIGHT - 20),
     sprite: uiSpriteSheet.sprites[8],
   });
 
@@ -84,8 +84,8 @@ class MainMenu extends Scene {
 
     // draw labels
     this.add(this.knpmasterLabel);
-    this.add(this.androettopLabel);
-    this.add(this.tributeLabel);
+    // this.add(this.androettopLabel);
+    // this.add(this.tributeLabel);
   }
 
   /**
