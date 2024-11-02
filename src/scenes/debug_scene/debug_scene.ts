@@ -85,8 +85,8 @@ class DebugScene extends Scene {
    */
   public onInitialize() {
     this.initBackground();
-    this.initPlayer();
     this.initMap();
+    this.initPlayer();
     this.initHUD();
   }
 

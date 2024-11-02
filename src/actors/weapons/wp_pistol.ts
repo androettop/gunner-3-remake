@@ -10,7 +10,7 @@ class WpPistol extends Weapon {
   public readonly label = "Pistol";
   public readonly projectileType = PBullet;
   public readonly weaponSize = vec(21, 0);
-  public readonly shootThrottle = 1000;
+  public readonly shootThrottle = 800;
   public readonly shootSound = SoundResources.Weapon01Sound;
 
   public animateWeapon() {

@@ -30,6 +30,22 @@ export const playerArmRunSheet = SpriteSheet.fromImageSource({
   },
 });
 
+export const playerDeathSheet = SpriteSheet.fromImageSource({
+  image: PlayerResources.PlayerSprites,
+  grid: {
+    rows: 1,
+    columns: 8,
+    spriteWidth: 64,
+    spriteHeight: 64,
+  },
+  spacing: {
+    originOffset: {
+      y: 64 * 8,
+      x: 0,
+    },
+  },
+});
+
 export const playerJumpSheet = SpriteSheet.fromImageSourceWithSourceViews({
   image: PlayerResources.PlayerSprites,
   sourceViews: [

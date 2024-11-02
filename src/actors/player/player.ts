@@ -1,19 +1,21 @@
 import {
   Actor,
   Animation,
+  AnimationStrategy,
   CollisionType,
   Engine,
   range,
   vec,
   Vector,
 } from "excalibur";
-import { playerJumpSheet, playerRunSheet } from "./resources";
+import { playerDeathSheet, playerJumpSheet, playerRunSheet } from "./resources";
 import PlayerArm from "./arm";
 import { CoyoteComponent } from "../../components/input/coyote";
 import { GAME_CONTROLS } from "../../helpers/consts";
 import Weapon from "../weapons/weapon";
 import WpPistol from "../weapons/wp_pistol";
 import WpShotgun from "../weapons/wp_shotgun";
+import { SoundResources } from "../sounds/resources";
 
 export interface PlayerParams {
   pos: Vector;
@@ -24,6 +26,7 @@ class Player extends Actor {
   public runSpeed = 160;
 
   public wantsJump = false;
+  private isDiyng = false;
 
   public direction: 1 | -1 = 1;
   public isRunning = false;
@@ -62,6 +65,17 @@ class Player extends Actor {
   public set health(value: number) {
     this._health = value > 10 ? 10 : value < 0 ? 0 : value;
   }
+
+  public get isDead() {
+    return this._health === 0;
+  }
+
+  private deathAnimation = Animation.fromSpriteSheet(
+    playerDeathSheet,
+    range(0, 7),
+    50,
+    AnimationStrategy.Freeze,
+  );
 
   private runAnimation = Animation.fromSpriteSheet(
     playerRunSheet,
@@ -164,8 +178,30 @@ class Player extends Actor {
     this.graphics.offset.x = -2 * this.direction;
   }
 
+  public die(engine: Engine) {
+    // hide all children
+    if (this._activeWeapon) this.removeChild(this._activeWeapon);
+    if (this.playerArm) this.removeChild(this.playerArm);
+    this.vel = Vector.Zero;
+    this.graphics.offset.y = 4;
+    this.isDiyng = true;
+    this.graphics.use(this.deathAnimation);
+    SoundResources.DeathSound.play();
+    this.actions.delay(3000).callMethod(() => {
+      engine.goToScene("main_menu");
+    });
+  }
+
   public update(engine: Engine, delta: number) {
     super.update(engine, delta);
+
+    if (this.isDead) {
+      if (!this.isDiyng) {
+        this.die(engine);
+      }
+      return;
+    }
+
     // Get the new state for the player
     this.updatePlayerState(engine);
 
