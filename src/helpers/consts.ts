@@ -2,6 +2,7 @@ import { Keys } from "excalibur";
 
 export const GAME_WIDTH = 640;
 export const GAME_HEIGHT = 480;
+export const WEAPONS_COUNT = 22;
 
 export const GAME_CONTROLS = {
   MOVE_LEFT: [Keys.Left],

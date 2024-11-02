@@ -48,3 +48,19 @@ export const healthIndicatorSpriteSheet = SpriteSheet.fromImageSource({
     },
   },
 });
+
+export const weaponsIndicatorSpriteSheet = SpriteSheet.fromImageSource({
+  image: UiResources.UiSprites,
+  grid: {
+    rows: 4,
+    columns: 11,
+    spriteWidth: 20,
+    spriteHeight: 20,
+  },
+  spacing: {
+    originOffset: {
+      x: 0,
+      y: 58,
+    },
+  },
+});

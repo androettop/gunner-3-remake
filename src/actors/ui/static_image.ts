@@ -11,9 +11,20 @@ export interface StaticImageParams extends ActorArgs {
 }
 
 class StaticImage extends Actor {
-  sprite: Graphic;
+  private _sprite: Graphic;
   hoverSprite?: Graphic;
   activeSprite?: Graphic;
+
+  public get sprite() {
+    return this._sprite;
+  }
+
+  public set sprite(sprite: Graphic) {
+    this._sprite = sprite;
+    if (this.isInitialized) {
+      this.graphics.use(sprite);
+    }
+  }
 
   constructor({
     pos,
@@ -33,7 +44,7 @@ class StaticImage extends Actor {
       ...rest,
     });
 
-    this.sprite = sprite;
+    this._sprite = sprite;
     this.hoverSprite = hoverSprite;
     this.activeSprite = activeSprite;
   }
