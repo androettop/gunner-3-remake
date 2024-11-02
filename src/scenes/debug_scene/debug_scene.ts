@@ -32,11 +32,9 @@ class DebugScene extends Scene {
     const player = new Player({
       pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
     });
-
     const healtIndicator = new HealtIndicator();
 
     this.add(player);
-
     this.add(healtIndicator);
 
     for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {

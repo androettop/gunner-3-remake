@@ -159,7 +159,8 @@ class Player extends Actor {
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
 
-    console.log(this);
+    // TODO: remove this
+    (window as any).player = this;
 
     this.body.collisionType = CollisionType.Active;
     this.body.useGravity = true;
