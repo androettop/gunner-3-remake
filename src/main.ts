@@ -8,6 +8,7 @@ import { SoundResources } from "./actors/sounds/resources";
 import { WorldResources } from "./actors/world/resources";
 import { PlayerResources } from "./actors/player/resources";
 import { TextResources } from "./actors/text/resources";
+import { ProjectileResources } from "./actors/projectile/resources";
 
 class Game extends Engine {
   constructor() {
@@ -32,6 +33,7 @@ class Game extends Engine {
         WorldResources,
         PlayerResources,
         TextResources,
+        ProjectileResources,
       ),
     );
   }

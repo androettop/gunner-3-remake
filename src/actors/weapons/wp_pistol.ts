@@ -1,14 +1,15 @@
 import Weapon from "./weapon";
 import Player from "../player/player";
 import { weapon01SpriteSheet } from "./resources";
+import PBullet from "../projectile/p_bullet";
+import { vec } from "excalibur";
 
 class WpPistol extends Weapon {
   public readonly twoHanded = false;
   public readonly label = "Pistol";
-
-  shoot() {
-    console.log("shoot");
-  }
+  public readonly projectileType = PBullet;
+  public readonly weaponSize = vec(21, 0);
+  public readonly shootThrottle = 1000;
 
   public animateWeapon() {
     const player = this.parent as Player | null;

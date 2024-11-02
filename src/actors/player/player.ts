@@ -90,40 +90,37 @@ class Player extends Actor {
   }
 
   private playerInput(engine: Engine) {
-    let newDirection = 0;
-
     // wasd movement with keys
     if (
       GAME_CONTROLS.MOVE_RIGHT.some((key) => engine.input.keyboard.isHeld(key))
     ) {
-      newDirection += 1;
-    }
-
-    if (
+      this.direction = 1;
+      this.isRunning = true;
+    } else if (
       GAME_CONTROLS.MOVE_LEFT.some((key) => engine.input.keyboard.isHeld(key))
     ) {
-      newDirection -= 1;
-    }
-
-    if (newDirection !== 0) {
-      this.direction = newDirection > 0 ? 1 : -1;
+      this.direction = -1;
       this.isRunning = true;
     } else {
       this.isRunning = false;
     }
 
-    // weapon switching
+    // jump
+    this.wantsJump = GAME_CONTROLS.JUMP.some((key) =>
+      engine.input.keyboard.isHeld(key),
+    );
 
+    // weapon switching
     GAME_CONTROLS.WEAPON_SWITCH.forEach((keys, index) => {
       if (keys.some((key) => engine.input.keyboard.wasPressed(key))) {
         this.activeWeapon = index;
       }
     });
 
-    // jump
-    this.wantsJump = GAME_CONTROLS.JUMP.some((key) =>
-      engine.input.keyboard.isHeld(key),
-    );
+    // weapon shooting
+    if (GAME_CONTROLS.SHOOT.some((key) => engine.input.keyboard.isHeld(key))) {
+      this._activeWeapon?.shoot();
+    }
   }
 
   private updateGroundedState() {
