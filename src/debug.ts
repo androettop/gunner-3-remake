@@ -60,7 +60,7 @@ export const setupDebugTools = (game: Engine) => {
   const debugToolsList = window.document.createElement("ul");
   debugActions.forEach((action) => {
     const debugToolsListItem = window.document.createElement("li");
-    debugToolsListItem.innerText = `Alt+${action.key}: ${action.description}`;
+    debugToolsListItem.innerText = `Ctrl + ${action.key}: ${action.description}`;
     debugToolsListItem.addEventListener("click", () => {
       action.action(game);
     });
