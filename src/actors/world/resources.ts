@@ -35,6 +35,8 @@ export const backgroundSpriteSheet = SpriteSheet.fromImageSourceWithSourceViews(
       { x: 640, y: 64, width: 64, height: 192 },
       // red sky
       { x: 704, y: 64, width: 64, height: 448 },
+      // bg vegetation
+      { x: 768, y: 0, width: 6 * 64, height: 7 * 64 },
     ],
   },
 );

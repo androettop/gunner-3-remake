@@ -7,38 +7,75 @@ import HealtIndicator from "../../actors/ui/healt_indicator";
 import StaticImage from "../../actors/ui/static_image";
 import { backgroundSpriteSheet } from "../../actors/world/resources";
 import WeaponsIndicator from "../../actors/ui/weapons_indicator";
+import DirtBlock from "../../actors/world/dirt_block";
 class DebugScene extends Scene {
+  private player: Player | null = null;
+
+  private initBackground() {
+    this.backgroundColor = Color.fromHex("29619c");
+    const sky = new StaticImage({
+      pos: vec(0, 0),
+      sprite: backgroundSpriteSheet.getSprite(0, 0),
+    });
+    sky.scale.x = 100;
+    this.add(sky);
+
+    const vegetationSprite = backgroundSpriteSheet.getSprite(2, 0);
+    // add 3 bgs to fill the screen
+    for (let i = 0; i < 3; i++) {
+      const vegetation = new StaticImage({
+        pos: vec(i * vegetationSprite.width - 40, 100),
+        sprite: vegetationSprite,
+      });
+      this.add(vegetation);
+    }
+  }
+
+  private initPlayer() {
+    this.player = new Player({
+      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
+    });
+    this.add(this.player);
+  }
+
+  private initMap() {
+    // add 2 rows of DirtBlock (64x64) at the bottom of the screen
+    for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
+      const dirtBlock = new DirtBlock({
+        pos: vec(i * 64, GAME_HEIGHT - 64),
+      });
+      this.add(dirtBlock);
+      const dirtBlock2 = new DirtBlock({
+        pos: vec(i * 64, GAME_HEIGHT - 128),
+      });
+      this.add(dirtBlock2);
+    }
+
+    // add the grass platform
+    for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
+      const grassPlatform = new GrassPlatform({
+        pos: vec(i * 64, GAME_HEIGHT - 128),
+      });
+      this.add(grassPlatform);
+    }
+  }
+
+  private initHUD() {
+    const healtIndicator = new HealtIndicator();
+    const weaponsIndicator = new WeaponsIndicator();
+
+    this.add(healtIndicator);
+    this.add(weaponsIndicator);
+  }
+
   /**
    * Start-up logic, called once
    */
   public onInitialize() {
-    this.backgroundColor = Color.fromHex("29619c");
-    const bg = new StaticImage({
-      pos: vec(0, 0),
-      sprite: backgroundSpriteSheet.getSprite(0, 0),
-    });
-    bg.scale.x = 100;
-
-    const player = new Player({
-      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
-    });
-    const healtIndicator = new HealtIndicator();
-    const weaponsIndicator = new WeaponsIndicator();
-    this.add(bg);
-    this.add(player);
-    this.add(healtIndicator);
-    this.add(weaponsIndicator);
-    for (let i = 0; i < Math.ceil(GAME_WIDTH / 64); i++) {
-      const grassPlatform = new GrassPlatform({
-        pos: vec(i * 64, GAME_HEIGHT - 20),
-      });
-      this.add(grassPlatform);
-    }
-
-    const grassPlatform2 = new GrassPlatform({
-      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT - 20 - 128),
-    });
-    this.add(grassPlatform2);
+    this.initBackground();
+    this.initPlayer();
+    this.initMap();
+    this.initHUD();
   }
 
   /**

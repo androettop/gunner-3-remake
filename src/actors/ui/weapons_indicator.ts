@@ -70,7 +70,7 @@ class WeaponsIndicator extends Actor {
   public onInitialize() {
     // add weapon text
     const text = new Text({
-      text: "Hola as7861287368&)&",
+      text: "",
       font: spriteFont1,
     });
 

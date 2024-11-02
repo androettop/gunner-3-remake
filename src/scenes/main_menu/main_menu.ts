@@ -12,7 +12,8 @@ class MainMenu extends Scene {
     hoverSprite: mainMenuSpriteSheet.sprites[1],
     anchor: vec(0.5, 0),
     onPress: () => {
-      console.log("Start button pressed");
+      // TODO: go to the new game scene
+      this.engine.goToScene("debug_scene");
     },
   });
 
