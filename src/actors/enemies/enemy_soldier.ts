@@ -38,7 +38,7 @@ class EnemySoldier extends BaseSoldier {
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
     // TODO: remove this
-    (window as any).player = this;
+    (window as any).enemy = this;
   }
 }
 

@@ -1,5 +1,6 @@
 import { Engine } from "excalibur";
 import { getPlayer } from "./helpers/player";
+import DebugScene from "./scenes/debug_scene/debug_scene";
 
 export type DebugAction = {
   key: string;
@@ -18,7 +19,10 @@ export const debugActions: DebugAction[] = [
   {
     key: "2",
     description: "Debug scene",
-    action: (game) => {
+    action: async (game) => {
+      await game.goToScene("main_menu");
+      game.removeScene("debug_scene");
+      game.add("debug_scene", new DebugScene());
       game.goToScene("debug_scene");
     },
   },
@@ -36,6 +40,13 @@ export const debugActions: DebugAction[] = [
     action: (game) => {
       const player = getPlayer(game.currentScene);
       player.health++;
+    },
+  },
+  {
+    key: "5",
+    description: "Kill enemy",
+    action: () => {
+      (window as any).enemy.health = 0;
     },
   },
 ];

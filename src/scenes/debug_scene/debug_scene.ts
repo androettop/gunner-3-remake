@@ -114,7 +114,6 @@ class DebugScene extends Scene {
   public onDeactivate() {
     // stop music
     SoundResources.Level01Music.stop();
-    this.clear();
   }
 }
 
