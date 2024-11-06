@@ -2,6 +2,7 @@ import {
   Actor,
   ActorArgs,
   Animation,
+  AnimationDirection,
   AnimationStrategy,
   CollisionType,
   Engine,
@@ -147,7 +148,23 @@ abstract class BaseSoldier extends Actor {
   public animateSoldier() {
     if (!this.isOnGround) {
       this.graphics.use(this.spriteSheets.jump.getSprite(0, 0));
-    } else if (this.isRunning) {
+    } else if (this.oldPos.x !== this.pos.x) {
+      // si la animacion va para el mismo lado que el personaje, pero el personaje se mueve para el otro lado
+      // se invierte la animacion
+
+      if (
+        ((this.direction < 0 && this.oldPos.x < this.pos.x) ||
+          (this.direction > 0 && this.oldPos.x > this.pos.x)) &&
+        this.runAnimation.direction === AnimationDirection.Forward
+      ) {
+        this.runAnimation.reverse();
+      } else if (
+        ((this.direction < 0 && this.oldPos.x > this.pos.x) ||
+          (this.direction > 0 && this.oldPos.x < this.pos.x)) &&
+        this.runAnimation.direction === AnimationDirection.Backward
+      ) {
+        this.runAnimation.reverse();
+      }
       this.graphics.use(this.runAnimation);
     } else {
       this.graphics.use(this.spriteSheets.run.getSprite(0, 0));

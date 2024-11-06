@@ -13,6 +13,7 @@ class EnemySoldier extends BaseSoldier {
       spriteImageSource: SoldierResources.EnemySprites,
     });
   }
+  public runSpeed = 100;
 
   public soldierInput() {
     /*
