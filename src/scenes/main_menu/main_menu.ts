@@ -1,9 +1,10 @@
-import { Scene, vec } from "excalibur";
+import { Color, Scene, Text, vec } from "excalibur";
 import { mainMenuSpriteSheet } from "../../actors/ui/resources";
 import { SoundResources } from "../../actors/sounds/resources";
 import Button from "../../actors/ui/button";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
 import StaticImage from "../../actors/ui/static_image";
+import { spriteFont2Light } from "../../actors/text/resources";
 
 class MainMenu extends Scene {
   startButton = new Button({
@@ -49,16 +50,26 @@ class MainMenu extends Scene {
     sprite: mainMenuSpriteSheet.sprites[7],
   });
 
-  knpmasterLabel = new StaticImage({
-    pos: vec(10, GAME_HEIGHT - 10),
-    anchor: vec(0, 1),
-    sprite: mainMenuSpriteSheet.sprites[8],
-  });
-
   /**
    * Start-up logic, called once
    */
   public onInitialize() {}
+
+  public initCredits() {
+    const text = new Text({
+      text: "KNPMASTER 2000",
+      font: spriteFont2Light,
+      color: Color.Red,
+    });
+
+    const textIndicator = new StaticImage({
+      pos: vec(9, GAME_HEIGHT - 8),
+      anchor: vec(0, 1),
+      sprite: text,
+    });
+
+    this.add(textIndicator);
+  }
 
   /**
    * Each time the scene is entered (Engine.goToScene)
@@ -79,10 +90,8 @@ class MainMenu extends Scene {
     this.add(this.loadButton);
     this.add(this.exitButton);
 
-    // draw labels
-    this.add(this.knpmasterLabel);
-    // this.add(this.androettopLabel);
-    // this.add(this.tributeLabel);
+    // draw credits
+    this.initCredits();
   }
 
   /**
