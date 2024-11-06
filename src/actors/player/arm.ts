@@ -1,13 +1,17 @@
-import { Actor, Animation, CollisionType, Engine, range, vec } from "excalibur";
-import { playerArmRunSheet } from "./resources";
-import Player from "./player";
+import {
+  Actor,
+  Animation,
+  CollisionType,
+  Engine,
+  range,
+  SpriteSheet,
+  vec,
+} from "excalibur";
+import BaseSoldier from "./base_soldier";
 
-class PlayerArm extends Actor {
-  private runAnimation = Animation.fromSpriteSheet(
-    playerArmRunSheet,
-    range(0, 7),
-    50,
-  );
+class SoldierArm extends Actor {
+  spriteSheet: SpriteSheet | null = null;
+  private runAnimation: Animation | null = null;
 
   constructor() {
     super({
@@ -18,19 +22,19 @@ class PlayerArm extends Actor {
   }
 
   public animateArm() {
-    const player = this.parent as Player | null;
-    if (!player) {
+    const soldier = this.parent as BaseSoldier | null;
+    if (!soldier || !this.spriteSheet || !this.runAnimation) {
       return;
     }
-    if (!player.isOnGround) {
-      this.graphics.use(playerArmRunSheet.getSprite(0, 0));
-    } else if (player.isRunning) {
+    if (!soldier.isOnGround) {
+      this.graphics.use(this.spriteSheet.getSprite(0, 0));
+    } else if (soldier.isRunning) {
       this.graphics.use(this.runAnimation);
     } else {
-      this.graphics.use(playerArmRunSheet.getSprite(0, 0));
+      this.graphics.use(this.spriteSheet.getSprite(0, 0));
     }
-    this.graphics.flipHorizontal = player.direction < 0;
-    this.graphics.offset.x = -2 * player.direction;
+    this.graphics.flipHorizontal = soldier.direction < 0;
+    this.graphics.offset.x = -2 * soldier.direction;
   }
 
   public update() {
@@ -39,8 +43,20 @@ class PlayerArm extends Actor {
 
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
+
     this.body.collisionType = CollisionType.PreventCollision;
+
+    const soldier = this.parent as BaseSoldier | null;
+    if (!soldier) {
+      throw new Error("SoldierArm must be a child of BaseSoldier");
+    }
+    this.spriteSheet = soldier.spriteSheets.armRun;
+    this.runAnimation = Animation.fromSpriteSheet(
+      this.spriteSheet,
+      range(0, 7),
+      50,
+    );
   }
 }
 
-export default PlayerArm;
+export default SoldierArm;

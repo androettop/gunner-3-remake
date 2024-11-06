@@ -55,14 +55,14 @@ class WeaponsIndicator extends Actor {
       }
 
       // show active weapon
-      if (this.lastActiveWeapon !== this.player.activeWeapon) {
+      if (this.lastActiveWeapon !== this.player.activeWeaponIndex) {
         // mark last active weapon as inactive
         if (this.lastActiveWeapon !== null) {
           this.updateWeaponSprite(this.lastActiveWeapon, false);
         }
-        this.updateWeaponSprite(this.player.activeWeapon, true);
+        this.updateWeaponSprite(this.player.activeWeaponIndex, true);
         // update last active weapon
-        this.lastActiveWeapon = this.player.activeWeapon;
+        this.lastActiveWeapon = this.player.activeWeaponIndex;
       }
     }
   }
