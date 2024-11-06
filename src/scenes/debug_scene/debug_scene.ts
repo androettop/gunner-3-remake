@@ -8,6 +8,7 @@ import StaticImage from "../../actors/ui/static_image";
 import { backgroundSpriteSheet } from "../../actors/world/resources";
 import WeaponsIndicator from "../../actors/ui/weapons_indicator";
 import DirtBlock from "../../actors/world/dirt_block";
+import EnemySoldier from "../../actors/enemies/enemy_soldier";
 class DebugScene extends Scene {
   private player: Player | null = null;
 
@@ -36,6 +37,13 @@ class DebugScene extends Scene {
       pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
     });
     this.add(this.player);
+  }
+
+  private initEnemies() {
+    const soldier = new EnemySoldier({
+      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
+    });
+    this.add(soldier);
   }
 
   private initMap() {
@@ -86,6 +94,7 @@ class DebugScene extends Scene {
   public onInitialize() {
     this.initBackground();
     this.initMap();
+    this.initEnemies();
     this.initPlayer();
     this.initHUD();
   }

@@ -4,8 +4,7 @@ import { greenToRed } from "../../helpers/colors";
 
 const basePlayerSprite = new ImageSource(playerSprites);
 
-// Cargar la imagen original
-export const PlayerResources = {
+export const SoldierResources = {
   PlayerSprites: basePlayerSprite,
   EnemySprites: await greenToRed(playerSprites),
 } as const;

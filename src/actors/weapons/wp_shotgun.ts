@@ -3,7 +3,7 @@ import Player from "../player/player";
 import PBullet from "../projectile/p_bullet";
 import { Engine, SpriteSheet, vec } from "excalibur";
 import { SoundResources } from "../sounds/resources";
-import BaseSoldier from "../player/base_soldier";
+import BaseSoldier from "../soldier/base_soldier";
 
 class WpShotgun extends Weapon {
   public readonly twoHanded = true;

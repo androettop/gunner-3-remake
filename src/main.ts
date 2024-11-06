@@ -6,9 +6,9 @@ import { createLoader } from "./helpers/resources";
 import { UiResources } from "./actors/ui/resources";
 import { SoundResources } from "./actors/sounds/resources";
 import { WorldResources } from "./actors/world/resources";
-import { PlayerResources } from "./actors/player/resources";
 import { TextResources } from "./actors/text/resources";
 import { ProjectileResources } from "./actors/projectile/resources";
+import { SoldierResources } from "./actors/soldier/resources";
 
 class Game extends Engine {
   constructor() {
@@ -31,7 +31,7 @@ class Game extends Engine {
         UiResources,
         SoundResources,
         WorldResources,
-        PlayerResources,
+        SoldierResources,
         TextResources,
         ProjectileResources,
       ),

@@ -1,7 +1,7 @@
 import { Engine, Vector } from "excalibur";
 import { GAME_CONTROLS } from "../../helpers/consts";
-import BaseSoldier from "./base_soldier";
-import { PlayerResources } from "./resources";
+import BaseSoldier from "../soldier/base_soldier";
+import { SoldierResources } from "../soldier/resources";
 
 export interface PlayerParams {
   pos: Vector;
@@ -12,7 +12,7 @@ class Player extends BaseSoldier {
     super({
       pos,
       name: "player",
-      spriteImageSource: PlayerResources.PlayerSprites,
+      spriteImageSource: SoldierResources.PlayerSprites,
     });
   }
 

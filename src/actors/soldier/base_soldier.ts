@@ -113,7 +113,7 @@ abstract class BaseSoldier extends Actor {
     );
   }
 
-  abstract soldierInput(engine: Engine): void;
+  abstract soldierInput(engine: Engine, delta: number): void;
 
   private updateGroundedState() {
     // All the game surfaces are flat, so we can just check if the soldier is moving vertically
@@ -126,8 +126,8 @@ abstract class BaseSoldier extends Actor {
     }
   }
 
-  private updateSoldierState(engine: Engine) {
-    this.soldierInput(engine);
+  private updateSoldierState(engine: Engine, delta: number) {
+    this.soldierInput(engine, delta);
     this.updateGroundedState();
   }
 
@@ -181,7 +181,7 @@ abstract class BaseSoldier extends Actor {
     }
 
     // Get the new state for the soldier
-    this.updateSoldierState(engine);
+    this.updateSoldierState(engine, delta);
 
     // Execute the soldier actions based on the state
     this.executeSoldierActions();
