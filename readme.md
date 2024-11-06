@@ -25,10 +25,13 @@ Try the game [here](https://androettop.github.io/gunner-3-remake/)
 - [x] Jumping
 - [x] Weapon switching
 - [x] Health
+- [x] Death
 - [ ] Roll
-- [ ] Death
 
 ### Enemies
+
+- [x] Soldier (needs ai)
+- [ ] Bullets collision
 
 ### Weapons
 
