@@ -11,11 +11,14 @@ import { SoldierResources } from "./actors/soldier/resources";
 
 class Game extends Engine {
   constructor() {
+    const scale = 2;
+    const width = 640;
+    const height = 480;
     super({
       canvasElementId: "game",
-      viewport: { width: 1280, height: 960 },
-      resolution: { width: 640, height: 480 },
-      antialiasing: false,
+      viewport: { width: width * scale, height: height * scale },
+      resolution: { width, height },
+      pixelArt: true,
       backgroundColor: Color.Black,
     });
 

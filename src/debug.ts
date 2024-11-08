@@ -49,6 +49,23 @@ export const debugActions: DebugAction[] = [
       (window as any).enemy.health = 0;
     },
   },
+  {
+    key: "6",
+    description: "Enemy shoot",
+    action: () => {
+      (window as any).enemy.activeWeapon?.shoot();
+    },
+  },
+  {
+    key: "7",
+    description: "Enemy jump",
+    action: () => {
+      (window as any).enemy.wantsJump = true;
+      setTimeout(() => {
+        (window as any).enemy.wantsJump = false;
+      }, 10);
+    },
+  },
 ];
 
 export const setupDebugTools = (game: Engine) => {
