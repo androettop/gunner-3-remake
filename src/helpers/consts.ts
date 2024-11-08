@@ -5,12 +5,12 @@ export const GAME_HEIGHT = 480;
 export const WEAPONS_COUNT = 22;
 
 export const GAME_CONTROLS = {
-  MOVE_LEFT: [Keys.Left],
-  MOVE_RIGHT: [Keys.Right],
-  AIM_UP: [Keys.Up],
-  AIM_DOWN: [Keys.Down],
-  JUMP: [Keys.ShiftLeft, Keys.ShiftRight, Keys.Space],
-  SHOOT: [Keys.ControlRight, Keys.ControlLeft],
+  MOVE_LEFT: [Keys.Left, Keys.A],
+  MOVE_RIGHT: [Keys.Right, Keys.D],
+  AIM_UP: [Keys.Up, Keys.W],
+  AIM_DOWN: [Keys.Down, Keys.S],
+  JUMP: [Keys.ShiftLeft, Keys.ShiftRight, Keys.Space, Keys.M],
+  SHOOT: [Keys.ControlRight, Keys.ControlLeft, Keys.N],
   ROLL: [Keys.Z, Keys.Enter],
   WEAPON_SWITCH: [
     [Keys.Digit1],
