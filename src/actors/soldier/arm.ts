@@ -1,16 +1,7 @@
-import {
-  Actor,
-  Animation,
-  CollisionType,
-  Engine,
-  range,
-  SpriteSheet,
-  vec,
-} from "excalibur";
+import { Actor, Animation, CollisionType, Engine, range, vec } from "excalibur";
 import BaseSoldier from "./base_soldier";
 
 class SoldierArm extends Actor {
-  spriteSheet: SpriteSheet | null = null;
   private runAnimation: Animation | null = null;
 
   constructor() {
@@ -23,15 +14,15 @@ class SoldierArm extends Actor {
 
   public animateArm() {
     const soldier = this.parent as BaseSoldier | null;
-    if (!soldier || !this.spriteSheet || !this.runAnimation) {
+    if (!soldier || !this.runAnimation) {
       return;
     }
     if (!soldier.isOnGround) {
-      this.graphics.use(this.spriteSheet.getSprite(0, 0));
+      this.graphics.use(soldier.spriteSheets.jump.getSprite(1, 0));
     } else if (soldier.isRunning) {
       this.graphics.use(this.runAnimation);
     } else {
-      this.graphics.use(this.spriteSheet.getSprite(0, 0));
+      this.graphics.use(soldier.spriteSheets.armRun.getSprite(0, 0));
     }
     this.graphics.flipHorizontal = soldier.direction < 0;
     this.graphics.offset.x = -2 * soldier.direction;
@@ -50,9 +41,8 @@ class SoldierArm extends Actor {
     if (!soldier) {
       throw new Error("SoldierArm must be a child of BaseSoldier");
     }
-    this.spriteSheet = soldier.spriteSheets.armRun;
     this.runAnimation = Animation.fromSpriteSheet(
-      this.spriteSheet,
+      soldier.spriteSheets.armRun,
       range(0, 7),
       50,
     );
