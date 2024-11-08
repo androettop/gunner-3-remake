@@ -70,6 +70,9 @@ abstract class BaseSoldier extends Actor {
   }
 
   public set health(value: number) {
+    if (this.isDead) {
+      return;
+    }
     this._health = value > 10 ? 10 : value < 0 ? 0 : value;
   }
 
@@ -184,6 +187,7 @@ abstract class BaseSoldier extends Actor {
     this.isDiyng = true;
     this.graphics.use(this.deathAnimation);
     SoundResources.DeathSound.play();
+    this.body.collisionType = CollisionType.PreventCollision;
     this.onDie(engine);
   }
 
