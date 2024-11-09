@@ -41,7 +41,12 @@ class DebugScene extends Scene {
 
   private initEnemies() {
     const soldier = new EnemySoldier({
-      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
+      type: "enemy-soldier",
+      x: GAME_WIDTH / 2,
+      y: GAME_HEIGHT / 2,
+      properties: {
+        health: 10,
+      },
     });
     this.add(soldier);
   }

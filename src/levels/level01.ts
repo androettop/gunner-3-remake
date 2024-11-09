@@ -4,8 +4,6 @@ export const level01: Level = {
   player: {
     x: 100,
     y: 100,
-    width: 64,
-    height: 64,
     type: "player",
     properties: {
       activeWeapon: 0,
@@ -13,9 +11,11 @@ export const level01: Level = {
       weapons: [0, 1],
     },
   },
-  layers: [
-    [],
-    [
+  layers: {
+    background: [],
+    background2: [],
+    mapBack: [],
+    mapFront: [
       {
         type: "ground",
         x: 0,
@@ -37,5 +37,16 @@ export const level01: Level = {
         },
       },
     ],
-  ],
+    characters: [
+      {
+        type: "enemy-soldier",
+        x: 400,
+        y: 240,
+        properties: {
+          health: 10,
+        },
+      },
+    ],
+    foreground: [],
+  },
 };

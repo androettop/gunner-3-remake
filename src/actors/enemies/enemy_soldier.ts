@@ -1,17 +1,15 @@
-import { Engine, Vector } from "excalibur";
+import { Engine, vec } from "excalibur";
+import { EnemySoldierEntity } from "../../levels/types";
 import BaseSoldier from "../soldier/base_soldier";
 import { SoldierResources } from "../soldier/resources";
 
-export interface EnemySoldierParams {
-  pos: Vector;
-}
-
 class EnemySoldier extends BaseSoldier {
-  constructor({ pos }: EnemySoldierParams) {
+  constructor(entity: EnemySoldierEntity) {
     super({
-      pos,
+      pos: vec(entity.x, entity.y),
       spriteImageSource: SoldierResources.EnemySprites,
     });
+    this.health = entity.properties.health;
   }
   public runSpeed = 100;
 
