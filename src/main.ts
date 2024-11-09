@@ -18,7 +18,7 @@ class Game extends Engine {
       canvasElementId: "game",
       viewport: { width: width * scale, height: height * scale },
       resolution: { width, height },
-      pixelArt: true,
+      antialiasing: false,
       backgroundColor: Color.Black,
     });
 
