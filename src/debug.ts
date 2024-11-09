@@ -85,6 +85,7 @@ export const setupDebugTools = (game: Engine) => {
       const key = e.key;
       const action = debugActions.find((a) => a.key === key);
       if (action) {
+        e.preventDefault();
         action.action(game);
       }
     }
