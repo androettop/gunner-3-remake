@@ -34,7 +34,12 @@ class DebugScene extends Scene {
 
   private initPlayer() {
     this.player = new Player({
-      pos: vec(GAME_WIDTH / 2, GAME_HEIGHT / 2),
+      type: "player",
+      x: GAME_WIDTH / 2,
+      y: GAME_HEIGHT / 2,
+      properties: {
+        health: 10,
+      },
     });
     this.add(this.player);
   }

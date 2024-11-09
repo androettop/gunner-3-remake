@@ -1,52 +1,70 @@
 import { Level } from "./types";
 
 export const level01: Level = {
-  player: {
-    x: 100,
-    y: 100,
-    type: "player",
-    properties: {
-      activeWeapon: 0,
-      health: 10,
-      weapons: [0, 1],
+  layers: [
+    {
+      name: "bg",
+      entities: [],
+      parallax: 0,
     },
-  },
-  layers: {
-    background: [],
-    background2: [],
-    mapBack: [],
-    mapFront: [
-      {
-        type: "ground",
-        x: 0,
-        y: 300,
-        width: 256,
-        height: 192,
-        properties: {
-          type: "green-grass",
+    {
+      name: "ground",
+      parallax: 0,
+      entities: [
+        {
+          type: "ground",
+          x: 0,
+          y: 300,
+          width: 256,
+          height: 192,
+          properties: {
+            type: "green-grass",
+          },
         },
-      },
-      {
-        type: "ground",
-        x: 384,
-        y: 300 - 64,
-        width: 256,
-        height: 256,
-        properties: {
-          type: "green-grass",
+        {
+          type: "ground",
+          x: 256,
+          y: 236,
+          width: 192,
+          height: 256,
+          properties: {
+            type: "green-grass",
+          },
         },
-      },
-    ],
-    characters: [
-      {
-        type: "enemy-soldier",
-        x: 400,
-        y: 240,
-        properties: {
-          health: 10,
+
+        {
+          type: "ground",
+          x: 512,
+          y: 236,
+          width: 64,
+          height: 256,
+          properties: {
+            type: "green-grass",
+          },
         },
-      },
-    ],
-    foreground: [],
-  },
+      ],
+    },
+    {
+      name: "npcs",
+      parallax: 0,
+      entities: [
+        {
+          type: "enemy-soldier",
+          x: 400,
+          y: 240,
+          properties: {
+            health: 10,
+          },
+        },
+        {
+          type: "player",
+          x: 50,
+          y: 240,
+          properties: {
+            health: 10,
+          },
+        },
+      ],
+    },
+  ],
 };

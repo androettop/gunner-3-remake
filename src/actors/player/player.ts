@@ -1,19 +1,17 @@
-import { Engine, Vector } from "excalibur";
+import { Engine, vec } from "excalibur";
 import { GAME_CONTROLS } from "../../helpers/consts";
+import { PlayerEntity } from "../../levels/types";
 import BaseSoldier from "../soldier/base_soldier";
 import { SoldierResources } from "../soldier/resources";
 
-export interface PlayerParams {
-  pos: Vector;
-}
-
 class Player extends BaseSoldier {
-  constructor({ pos }: PlayerParams) {
+  constructor(entity: PlayerEntity) {
     super({
-      pos,
+      pos: vec(entity.x, entity.y),
       name: "player",
       spriteImageSource: SoldierResources.PlayerSprites,
     });
+    this.health = entity.properties.health;
   }
 
   public soldierInput(engine: Engine) {

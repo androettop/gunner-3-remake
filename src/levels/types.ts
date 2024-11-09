@@ -11,8 +11,6 @@ export interface PlayerEntity extends BaseLevelEntity {
   type: "player";
   properties: {
     health: number;
-    weapons: number[];
-    activeWeapon: number;
   };
 }
 
@@ -32,17 +30,15 @@ export interface GroundEntity extends BaseLevelEntity {
   };
 }
 
-export type LevelEntity = EnemySoldierEntity | GroundEntity;
+export type LevelEntity = PlayerEntity | EnemySoldierEntity | GroundEntity;
+
+export type LevelLayer = {
+  name: string;
+  entities: LevelEntity[];
+  parallax: number;
+};
 
 export type Level = {
   // music: Sound;
-  player: PlayerEntity;
-  layers: {
-    background: LevelEntity[];
-    background2: LevelEntity[];
-    mapBack: LevelEntity[];
-    mapFront: LevelEntity[];
-    characters: LevelEntity[];
-    foreground: LevelEntity[];
-  };
+  layers: LevelLayer[];
 };
