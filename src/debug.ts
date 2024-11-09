@@ -1,6 +1,7 @@
 import { Engine } from "excalibur";
 import { getPlayer } from "./helpers/player";
 import DebugScene from "./scenes/debug_scene/debug_scene";
+import Level01 from "./scenes/level_01/level_01";
 
 export type DebugAction = {
   key: string;
@@ -64,6 +65,16 @@ export const debugActions: DebugAction[] = [
       setTimeout(() => {
         (window as any).enemy.wantsJump = false;
       }, 10);
+    },
+  },
+  {
+    key: "8",
+    description: "level 01",
+    action: async (game) => {
+      await game.goToScene("main_menu");
+      game.removeScene("level_01");
+      game.add("level_01", new Level01());
+      game.goToScene("level_01");
     },
   },
 ];
