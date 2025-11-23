@@ -8,6 +8,7 @@ import { WorldResources } from "./actors/world/resources";
 import { TextResources } from "./actors/text/resources";
 import { ProjectileResources } from "./actors/projectile/resources";
 import { SoldierResources } from "./actors/soldier/resources";
+import { ParticlesResources } from "./actors/particles/resources";
 
 class Game extends Engine {
   constructor() {
@@ -34,6 +35,7 @@ class Game extends Engine {
         SoldierResources,
         TextResources,
         ProjectileResources,
+        ParticlesResources,
       ),
     );
   }

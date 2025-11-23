@@ -37,7 +37,6 @@ abstract class Weapon extends Actor {
     if (!player) {
       return;
     }
-    console.log(player);
     const ProjectileClass = this.projectileType;
 
     this.shootSound.play();

@@ -1,5 +1,4 @@
 import {
-  Actor,
   ActorArgs,
   Animation,
   AnimationDirection,
@@ -12,14 +11,14 @@ import {
   vec,
   Vector,
 } from "excalibur";
-import { getSoldierSpriteSheets } from "./resources";
 import { CoyoteComponent } from "../../components/input/coyote";
+import BaseEnemy from "../enemies/base_enemy";
+import { SoundResources } from "../sounds/resources";
 import Weapon from "../weapons/weapon";
 import WpPistol from "../weapons/wp_pistol";
 import WpShotgun from "../weapons/wp_shotgun";
-import { SoundResources } from "../sounds/resources";
 import SoldierArm from "./arm";
-import BaseEnemy from "../enemies/base_enemy";
+import { getSoldierSpriteSheets } from "./resources";
 
 export interface BaseSoldierParams extends ActorArgs {
   pos: Vector;

@@ -2,14 +2,13 @@ import {
   Actor,
   ActorArgs,
   Collider,
-  CollisionContact,
   CollisionType,
   Engine,
-  Side,
   vec,
   Vector,
 } from "excalibur";
 import BaseEnemy from "../enemies/base_enemy";
+import RigidBody from "../world/rigid_body";
 
 export interface ProjectileParams extends ActorArgs {
   /**
@@ -26,6 +25,8 @@ abstract class Projectile extends Actor {
   abstract speed: number;
   private directionAngle: number;
   abstract damage: number;
+  abstract destroyOnEnemyCollision: boolean;
+  abstract destroyOnRigidBodyCollision: boolean;
 
   constructor({ directionAngle, ...rest }: ProjectileParams) {
     super({
@@ -58,6 +59,15 @@ abstract class Projectile extends Actor {
     if (other.owner instanceof BaseEnemy) {
       other.owner.health -= this.damage;
       console.log(`Enemy hit! New health: ${other.owner.health}`);
+      if (this.destroyOnEnemyCollision) {
+        this.destroy(false);
+      }
+    } else if (
+      other.owner instanceof RigidBody &&
+      this.destroyOnRigidBodyCollision
+    ) {
+      console.log("Projectile hit a rigid body");
+      this.destroy(false);
     }
   }
 }

@@ -1,31 +1,28 @@
-import {
-  Collider,
-  CollisionContact,
-  CollisionType,
-  Engine,
-  Side,
-} from "excalibur";
+import { CollisionType, Engine } from "excalibur";
+import SparkParticle from "../particles/spark";
 import Projectile, { ProjectileParams } from "./projectile";
 import { projectile01Sprite } from "./resources";
-import BaseEnemy from "../enemies/base_enemy";
 
 abstract class PBullet extends Projectile {
   speed: number = 400;
   damage: number = 1;
+  destroyOnEnemyCollision: boolean = true;
+  destroyOnRigidBodyCollision: boolean = true;
 
   constructor(params: ProjectileParams) {
     super({
-      width: 16,
-      height: 16,
+      width: 6,
+      height: 3,
       ...params,
       collisionType: CollisionType.Passive,
     });
   }
 
   public destroy(offScreen: boolean = false) {
+    console.log("PBullet destroyed");
     if (!offScreen) {
-      // Create particle effect
     }
+    this.scene?.add(new SparkParticle({ pos: this.pos.clone() }));
     this.kill();
   }
 
@@ -36,13 +33,6 @@ abstract class PBullet extends Projectile {
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
     this.graphics.use(projectile01Sprite);
-  }
-
-  public onCollisionStart(_self: Collider, other: Collider): void {
-    super.onCollisionStart(_self, other);
-    if (other.owner instanceof BaseEnemy) {
-      this.destroy(false);
-    }
   }
 }
 

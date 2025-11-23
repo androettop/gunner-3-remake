@@ -1,5 +1,4 @@
 import {
-  Actor,
   ActorArgs,
   CollisionType,
   Engine,
@@ -9,12 +8,13 @@ import {
 } from "excalibur";
 import { GroundEntity } from "../../levels/types";
 import { worldSpriteSheet } from "./resources";
+import RigidBody from "./rigid_body";
 
 export interface DirtBlockParams extends ActorArgs {
   pos: Vector;
 }
 
-class Ground extends Actor {
+class Ground extends RigidBody {
   private _entity: GroundEntity;
 
   constructor(entity: GroundEntity) {
