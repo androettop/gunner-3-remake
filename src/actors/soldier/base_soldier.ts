@@ -73,6 +73,9 @@ abstract class BaseSoldier extends BaseEnemy {
     if (this.isDead) {
       return;
     }
+    if (value < this._health) {
+      this.onHurt();
+    }
     this._health = value > 10 ? 10 : value < 0 ? 0 : value;
   }
 
@@ -176,6 +179,7 @@ abstract class BaseSoldier extends BaseEnemy {
     this.graphics.offset.x = -2 * this.direction;
   }
 
+  abstract onHurt(): void;
   abstract onDie(engine: Engine): void;
 
   public die(engine: Engine) {
@@ -186,7 +190,6 @@ abstract class BaseSoldier extends BaseEnemy {
     this.graphics.offset.y = 4;
     this.isDiyng = true;
     this.graphics.use(this.deathAnimation);
-    SoundResources.DeathSound.play();
     this.body.collisionType = CollisionType.PreventCollision;
     this.onDie(engine);
   }

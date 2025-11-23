@@ -3,6 +3,7 @@ import { GAME_CONTROLS } from "../../helpers/consts";
 import { PlayerEntity } from "../../levels/types";
 import BaseSoldier from "../soldier/base_soldier";
 import { SoldierResources } from "../soldier/resources";
+import { SoundResources } from "../sounds/resources";
 
 class Player extends BaseSoldier {
   constructor(entity: PlayerEntity) {
@@ -60,9 +61,14 @@ class Player extends BaseSoldier {
   }
 
   public onDie(engine: Engine) {
+    SoundResources.DeathSound.play();
     this.actions.delay(3000).callMethod(() => {
       engine.goToScene("main_menu");
     });
+  }
+
+  public onHurt() {
+    SoundResources.HurtSound.play();
   }
 
   public onInitialize(engine: Engine) {

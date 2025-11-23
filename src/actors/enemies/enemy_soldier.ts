@@ -35,6 +35,8 @@ class EnemySoldier extends BaseSoldier {
 
   public onDie() {}
 
+  public onHurt() {}
+
   public onPreUpdate(engine: Engine, delta: number): void {
     super.onPreUpdate(engine, delta);
     // check distance to player
