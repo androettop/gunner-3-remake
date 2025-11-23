@@ -1,4 +1,4 @@
-import { Engine, vec } from "excalibur";
+import { Engine, toRadians, vec } from "excalibur";
 import { GAME_CONTROLS } from "../../helpers/consts";
 import { PlayerEntity } from "../../levels/types";
 import BaseSoldier from "../soldier/base_soldier";
@@ -32,11 +32,11 @@ class Player extends BaseSoldier {
 
     // aim up and down
     if (GAME_CONTROLS.AIM_UP.some((key) => engine.input.keyboard.isHeld(key))) {
-      this.aimDirection = -1;
+      this.aimDirection = toRadians(-45);
     } else if (
       GAME_CONTROLS.AIM_DOWN.some((key) => engine.input.keyboard.isHeld(key))
     ) {
-      this.aimDirection = 1;
+      this.aimDirection = toRadians(45);
     } else {
       this.aimDirection = 0;
     }

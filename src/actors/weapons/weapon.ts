@@ -42,15 +42,10 @@ abstract class Weapon extends Actor {
     this.shootSound.play();
 
     // player.direction -1 is left, 1 is right
-    // player.aimDirection -1 is up (45 degree), 0 is straight, 1 is down (45 degree)
+    // player.aimDirection the angle in radians to aim
     // get direction in radians taking both into account
 
-    let directionAngle =
-      player.aimDirection === 0
-        ? 0
-        : player.aimDirection === -1
-          ? toRadians(-45)
-          : toRadians(45);
+    let directionAngle = player.aimDirection;
 
     if (player.direction === -1) {
       directionAngle = toRadians(180) - directionAngle;

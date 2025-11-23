@@ -33,7 +33,7 @@ abstract class BaseSoldier extends BaseEnemy {
   private isDiyng = false;
 
   public direction: 1 | -1 = 1;
-  public aimDirection: 0 | 1 | -1 = 0;
+  public aimDirection: number = 0;
   public isRunning = false;
   public isOnGround = false;
 
