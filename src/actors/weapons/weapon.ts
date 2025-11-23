@@ -9,7 +9,7 @@ import {
   Vector,
 } from "excalibur";
 import Projectile from "../projectile/projectile";
-import Player from "../player/player";
+import BaseSoldier from "../soldier/base_soldier";
 
 export interface WeaponParams extends ActorArgs {}
 
@@ -33,29 +33,29 @@ abstract class Weapon extends Actor {
   }
 
   createProjectile() {
-    const player = this.parent as Player | null;
-    if (!player) {
+    const soldier = this.parent as BaseSoldier | null;
+    if (!soldier) {
       return;
     }
     const ProjectileClass = this.projectileType;
 
     this.shootSound.play();
 
-    // player.direction -1 is left, 1 is right
-    // player.aimDirection the angle in radians to aim
+    // soldier.direction -1 is left, 1 is right
+    // soldier.aimDirection the angle in radians to aim
     // get direction in radians taking both into account
 
-    let directionAngle = player.aimDirection;
+    let directionAngle = soldier.aimDirection;
 
-    if (player.direction === -1) {
+    if (soldier.direction === -1) {
       directionAngle = toRadians(180) - directionAngle;
     }
 
     // @ts-ignore: The projectile will extend the Projectile class.
     const projectile = new ProjectileClass({
-      pos: player.pos
+      pos: soldier.pos
         .clone()
-        .add(vec(this.weaponSize.x * player.direction, this.weaponSize.y)),
+        .add(vec(this.weaponSize.x * soldier.direction, this.weaponSize.y)),
       directionAngle,
     });
     this.scene?.add(projectile);
