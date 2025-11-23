@@ -19,13 +19,14 @@ import WpPistol from "../weapons/wp_pistol";
 import WpShotgun from "../weapons/wp_shotgun";
 import { SoundResources } from "../sounds/resources";
 import SoldierArm from "./arm";
+import BaseEnemy from "../enemies/base_enemy";
 
 export interface BaseSoldierParams extends ActorArgs {
   pos: Vector;
   spriteImageSource: ImageSource;
 }
 
-abstract class BaseSoldier extends Actor {
+abstract class BaseSoldier extends BaseEnemy {
   public jumpSpeed = 515;
   public runSpeed = 160;
 

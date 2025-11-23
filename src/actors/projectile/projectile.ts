@@ -1,11 +1,15 @@
 import {
   Actor,
   ActorArgs,
+  Collider,
+  CollisionContact,
   CollisionType,
   Engine,
+  Side,
   vec,
   Vector,
 } from "excalibur";
+import BaseEnemy from "../enemies/base_enemy";
 
 export interface ProjectileParams extends ActorArgs {
   /**
@@ -21,6 +25,7 @@ export interface ProjectileParams extends ActorArgs {
 abstract class Projectile extends Actor {
   abstract speed: number;
   private directionAngle: number;
+  abstract damage: number;
 
   constructor({ directionAngle, ...rest }: ProjectileParams) {
     super({
@@ -47,6 +52,13 @@ abstract class Projectile extends Actor {
       this.speed * Math.sin(this.directionAngle),
     );
     this.rotation = this.directionAngle;
+  }
+
+  public onCollisionStart(_self: Collider, other: Collider): void {
+    if (other.owner instanceof BaseEnemy) {
+      other.owner.health -= this.damage;
+      console.log(`Enemy hit! New health: ${other.owner.health}`);
+    }
   }
 }
 
