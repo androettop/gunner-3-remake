@@ -29,11 +29,11 @@
   "homepage": "https://github.com/androettop/gunner-3-remake.git#readme",
   "devDependencies": {
     "excalibur": "0.29.3",
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3",
-    "typescript": "5.6.3",
-    "vite": "5.4.10"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.6.2",
+    "typescript": "5.9.3",
+    "vite": "7.2.4"
   },
   "dependencies": {
     "@excaliburjs/testing": "^0.26.0"
