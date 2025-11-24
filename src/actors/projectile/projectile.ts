@@ -10,6 +10,7 @@ import {
 import BaseEnemy from "../enemies/base_enemy";
 import RigidBody from "../world/rigid_body";
 import BaseSoldier from "../soldier/base_soldier";
+import BloodParticle from "../particles/blood";
 
 export interface ProjectileParams extends ActorArgs {
   /**
@@ -72,6 +73,12 @@ abstract class Projectile extends Actor {
       other.owner.health -= this.damage;
       if (this.destroyOnEnemyCollision) {
         this.destroy(false);
+      }
+      if (other.owner.bleeds) {
+        const bloodPos = this.pos.clone();
+        // randomize a little bit the blood x position (-3 to 3)
+        bloodPos.x += Math.random() * 6 - 3;
+        this.scene?.add(new BloodParticle({ pos: bloodPos }));
       }
     } else if (
       other.owner instanceof RigidBody &&

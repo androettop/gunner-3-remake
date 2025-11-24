@@ -20,8 +20,8 @@ abstract class PBullet extends Projectile {
 
   public destroy(offScreen: boolean = false) {
     if (!offScreen) {
+      this.scene?.add(new SparkParticle({ pos: this.pos.clone() }));
     }
-    this.scene?.add(new SparkParticle({ pos: this.pos.clone() }));
     this.kill();
   }
 

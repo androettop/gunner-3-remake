@@ -1,6 +1,8 @@
 import { Actor, ActorArgs } from "excalibur";
 
 export default class BaseEnemy extends Actor {
+  public bleeds = true;
+
   public get health(): number {
     return 1;
   }

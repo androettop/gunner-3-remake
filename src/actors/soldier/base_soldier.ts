@@ -3,6 +3,7 @@ import {
   Animation,
   AnimationDirection,
   AnimationStrategy,
+  CollisionGroupManager,
   CollisionType,
   Engine,
   ImageSource,
@@ -23,6 +24,8 @@ export interface BaseSoldierParams extends ActorArgs {
   pos: Vector;
   spriteImageSource: ImageSource;
 }
+
+const soldierCollisionGroup = CollisionGroupManager.create("Soldiers");
 
 abstract class BaseSoldier extends BaseEnemy {
   public jumpSpeed = 515;
@@ -101,6 +104,7 @@ abstract class BaseSoldier extends BaseEnemy {
       pos: pos,
       width: 64,
       height: 64,
+      collisionGroup: soldierCollisionGroup,
       ...rest,
     });
     this.addComponent(this.coyote);
