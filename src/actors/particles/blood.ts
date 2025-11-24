@@ -3,15 +3,14 @@ import {
   Collider,
   CollisionContact,
   CollisionType,
-  Engine,
   range,
   Side,
   vec,
   Vector,
 } from "excalibur";
+import RigidBody from "../world/rigid_body";
 import BaseParticle from "./base_particle";
 import { bloodSprite } from "./resources";
-import RigidBody from "../world/rigid_body";
 
 export default class BloodParticle extends BaseParticle {
   constructor({ pos }: { pos: Vector }) {

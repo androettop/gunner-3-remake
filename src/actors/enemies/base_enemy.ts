@@ -7,7 +7,7 @@ export default class BaseEnemy extends Actor {
     return 1;
   }
 
-  public set health(value: number) {
+  public set health(_value: number) {
     // no-op
   }
 
