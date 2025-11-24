@@ -9,12 +9,17 @@ import {
 } from "excalibur";
 import BaseEnemy from "../enemies/base_enemy";
 import RigidBody from "../world/rigid_body";
+import BaseSoldier from "../soldier/base_soldier";
 
 export interface ProjectileParams extends ActorArgs {
   /**
    * The angle in radians to fire the projectile
    */
   directionAngle: number;
+  /**
+   * Solider that fired the projectile
+   */
+  parentSoldier: BaseSoldier;
   /**
    * The base velocity of the projectile
    */
@@ -24,16 +29,18 @@ export interface ProjectileParams extends ActorArgs {
 abstract class Projectile extends Actor {
   abstract speed: number;
   private directionAngle: number;
+  protected parentSoldier: BaseSoldier;
   abstract damage: number;
   abstract destroyOnEnemyCollision: boolean;
   abstract destroyOnRigidBodyCollision: boolean;
 
-  constructor({ directionAngle, ...rest }: ProjectileParams) {
+  constructor({ directionAngle, parentSoldier, ...rest }: ProjectileParams) {
     super({
       pos: vec(0, 0),
       ...rest,
     });
     this.directionAngle = directionAngle;
+    this.parentSoldier = parentSoldier;
   }
 
   abstract destroy(offScreen: boolean): void;
@@ -56,9 +63,13 @@ abstract class Projectile extends Actor {
   }
 
   public onCollisionStart(_self: Collider, other: Collider): void {
+    // avoid collision with parent soldier
+    if (other.owner === this.parentSoldier) {
+      return;
+    }
+
     if (other.owner instanceof BaseEnemy) {
       other.owner.health -= this.damage;
-      console.log(`Enemy hit! New health: ${other.owner.health}`);
       if (this.destroyOnEnemyCollision) {
         this.destroy(false);
       }
@@ -66,7 +77,6 @@ abstract class Projectile extends Actor {
       other.owner instanceof RigidBody &&
       this.destroyOnRigidBodyCollision
     ) {
-      console.log("Projectile hit a rigid body");
       this.destroy(false);
     }
   }

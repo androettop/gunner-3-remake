@@ -26,7 +26,6 @@ export default class BaseParticle extends Actor {
     this.animation.events.on("end", () => {
       this.kill();
     });
-    console.log("BaseParticle created");
   }
 
   public onInitialize(engine: Engine): void {

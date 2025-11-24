@@ -19,7 +19,6 @@ abstract class PBullet extends Projectile {
   }
 
   public destroy(offScreen: boolean = false) {
-    console.log("PBullet destroyed");
     if (!offScreen) {
     }
     this.scene?.add(new SparkParticle({ pos: this.pos.clone() }));

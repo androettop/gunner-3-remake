@@ -44,11 +44,15 @@ class EnemySoldier extends BaseSoldier {
 
     const player = getPlayer(this.scene);
     const distanceToPlayer = this.pos.distance(player.pos);
-    console.log("Distance to player:", distanceToPlayer);
     if (this.maxViewDistance > distanceToPlayer) {
       // face player
       this.isPatrolling = false;
       this.direction = this.pos.x < player.pos.x ? 1 : -1;
+
+      // aim at player
+      const deltaY = player.pos.y - this.pos.y;
+      const deltaX = player.pos.x - this.pos.x;
+      this.aimDirection = Math.atan2(deltaY, deltaX * this.direction);
 
       // shoot at player
       const now = engine.clock.now();

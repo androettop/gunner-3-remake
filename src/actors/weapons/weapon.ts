@@ -53,6 +53,7 @@ abstract class Weapon extends Actor {
 
     // @ts-ignore: The projectile will extend the Projectile class.
     const projectile = new ProjectileClass({
+      parentSoldier: soldier,
       pos: soldier.pos
         .clone()
         .add(vec(this.weaponSize.x * soldier.direction, this.weaponSize.y)),
