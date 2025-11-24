@@ -53,7 +53,7 @@ export const level01: Level = {
           x: 400,
           y: 240,
           properties: {
-            health: 10,
+            health: 5,
           },
         },
         {
