@@ -23,4 +23,17 @@ export const initLevel = (level: Level, scene: Scene) => {
       }
     });
   });
+
+  // Add left boundary ground
+  const leftBoundary = new Ground({
+    type: "ground",
+    x: -64,
+    y: 0,
+    width: 64,
+    height: 1000,
+    properties: {
+      type: "metal",
+    },
+  });
+  scene.add(leftBoundary);
 };

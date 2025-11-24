@@ -30,6 +30,11 @@ class HealthIndicator extends Actor {
     }
   }
 
+  public onPreUpdate(engine: Engine, delta: number): void {
+    this.pos = engine.currentScene.camera.pos;
+    super.onPreUpdate(engine, delta);
+  }
+
   public onInitialize(engine: Engine) {
     console.log(engine);
     if (this.scene) {

@@ -77,6 +77,15 @@ export const debugActions: DebugAction[] = [
       game.goToScene("level_01");
     },
   },
+  {
+    key: "9",
+    description: "attach camera to player",
+    action: async (game) => {
+      const player = getPlayer(game.currentScene);
+      game.currentScene.camera.strategy.elasticToActor(player, 0.2, 0.2);
+      console.log(game.currentScene.camera);
+    },
+  },
 ];
 
 export const setupDebugTools = (game: Engine) => {
