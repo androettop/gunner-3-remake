@@ -3,7 +3,7 @@ import { SoundResources } from "../../actors/sounds/resources";
 import Player from "../../actors/player/player";
 import GrassPlatform from "../../actors/world/grass_platform";
 import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
-import HealtIndicator from "../../actors/ui/healt_indicator";
+import HealthIndicator from "../../actors/ui/health_indicator";
 import StaticImage from "../../actors/ui/static_image";
 import { backgroundSpriteSheet } from "../../actors/world/resources";
 import WeaponsIndicator from "../../actors/ui/weapons_indicator";
@@ -91,10 +91,10 @@ class DebugScene extends Scene {
   }
 
   private initHUD() {
-    const healtIndicator = new HealtIndicator();
+    const healthIndicator = new HealthIndicator();
     const weaponsIndicator = new WeaponsIndicator();
 
-    this.add(healtIndicator);
+    this.add(healthIndicator);
     this.add(weaponsIndicator);
   }
 

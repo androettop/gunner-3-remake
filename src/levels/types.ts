@@ -1,3 +1,5 @@
+import { Color, Sound } from "excalibur";
+
 export interface BaseLevelEntity {
   x: number;
   y: number;
@@ -39,6 +41,7 @@ export type LevelLayer = {
 };
 
 export type Level = {
-  // music: Sound;
+  backgroundColor: Color;
+  music: Sound;
   layers: LevelLayer[];
 };

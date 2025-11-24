@@ -1,6 +1,10 @@
+import { Color } from "excalibur";
+import { SoundResources } from "../actors/sounds/resources";
 import { Level } from "./types";
 
 export const level01: Level = {
+  backgroundColor: Color.fromHex("29619c"),
+  music: SoundResources.Level01Music,
   layers: [
     {
       name: "bg",

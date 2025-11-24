@@ -3,7 +3,7 @@ import { getPlayer } from "../../helpers/player";
 import { healthIndicatorSpriteSheet } from "./resources";
 import Player from "../player/player";
 
-class HealtIndicator extends Actor {
+class HealthIndicator extends Actor {
   player?: Player;
 
   constructor() {
@@ -38,4 +38,4 @@ class HealtIndicator extends Actor {
   }
 }
 
-export default HealtIndicator;
+export default HealthIndicator;

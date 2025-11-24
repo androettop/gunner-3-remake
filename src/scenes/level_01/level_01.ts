@@ -1,16 +1,15 @@
-import { Color, Scene } from "excalibur";
-import { SoundResources } from "../../actors/sounds/resources";
-import HealtIndicator from "../../actors/ui/healt_indicator";
+import { Scene } from "excalibur";
+import HealthIndicator from "../../actors/ui/health_indicator";
 import WeaponsIndicator from "../../actors/ui/weapons_indicator";
 import { level01 } from "../../levels/level01";
 import { initLevel } from "../../levels/renderer";
 
 class Level01 extends Scene {
   private initHUD() {
-    const healtIndicator = new HealtIndicator();
+    const healthIndicator = new HealthIndicator();
     const weaponsIndicator = new WeaponsIndicator();
 
-    this.add(healtIndicator);
+    this.add(healthIndicator);
     this.add(weaponsIndicator);
   }
 
@@ -18,7 +17,7 @@ class Level01 extends Scene {
    * Start-up logic, called once
    */
   public onInitialize() {
-    this.backgroundColor = Color.fromHex("29619c");
+    this.backgroundColor = level01.backgroundColor;
     initLevel(level01, this);
     this.initHUD();
   }
@@ -28,8 +27,8 @@ class Level01 extends Scene {
    */
   public onActivate() {
     // start music
-    SoundResources.Level01Music.loop = true;
-    SoundResources.Level01Music.play(0.3);
+    level01.music.loop = true;
+    level01.music.play(0.3);
   }
 
   /**
@@ -37,7 +36,7 @@ class Level01 extends Scene {
    */
   public onDeactivate() {
     // stop music
-    SoundResources.Level01Music.stop();
+    level01.music.stop();
   }
 }
 
