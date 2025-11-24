@@ -13,7 +13,6 @@ import {
 } from "excalibur";
 import { CoyoteComponent } from "../../components/input/coyote";
 import BaseEnemy from "../enemies/base_enemy";
-import { SoundResources } from "../sounds/resources";
 import Weapon from "../weapons/weapon";
 import WpPistol from "../weapons/wp_pistol";
 import WpShotgun from "../weapons/wp_shotgun";

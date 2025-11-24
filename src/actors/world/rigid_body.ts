@@ -24,7 +24,7 @@ class RigidBody extends Actor {
     }
   }
 
-  public onInitialize(engine: Engine): void {
+  public onInitialize(_engine: Engine): void {
     this.body.useGravity = false;
     this.body.collisionType = CollisionType.Fixed;
   }
