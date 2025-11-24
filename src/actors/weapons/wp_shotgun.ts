@@ -24,7 +24,8 @@ class WpShotgun extends Weapon {
     this.graphics.offset.x = -2 * player.direction;
   }
 
-  public update() {
+  public update(engine: Engine, delta: number): void {
+    super.update(engine, delta);
     this.animateWeapon();
   }
 

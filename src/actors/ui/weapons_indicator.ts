@@ -1,4 +1,4 @@
-import { Actor, Text, vec } from "excalibur";
+import { Actor, Engine, Text, vec } from "excalibur";
 import { getPlayer } from "../../helpers/player";
 import { UiResources, weaponsIndicatorSpriteSheet } from "./resources";
 import Player from "../player/player";
@@ -40,7 +40,8 @@ class WeaponsIndicator extends Actor {
     }
   }
 
-  public update() {
+  public update(engine: Engine, delta: number): void {
+    super.update(engine, delta);
     if (!this.player && this.scene) {
       this.player = getPlayer(this.scene);
     }

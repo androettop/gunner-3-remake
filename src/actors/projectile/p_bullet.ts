@@ -25,10 +25,6 @@ abstract class PBullet extends Projectile {
     this.kill();
   }
 
-  public update(engine: Engine, delta: number): void {
-    super.update(engine, delta);
-  }
-
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
     this.graphics.use(projectile01Sprite);

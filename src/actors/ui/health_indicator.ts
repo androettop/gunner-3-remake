@@ -15,7 +15,8 @@ class HealthIndicator extends Actor {
     });
   }
 
-  public update() {
+  public update(engine: Engine, delta: number): void {
+    super.update(engine, delta);
     if (!this.player && this.scene) {
       this.player = getPlayer(this.scene);
     }
@@ -28,11 +29,6 @@ class HealthIndicator extends Actor {
             : this.player.health;
       this.graphics.use(healthIndicatorSpriteSheet.getSprite(health, 0));
     }
-  }
-
-  public onPreUpdate(engine: Engine, delta: number): void {
-    this.pos = engine.currentScene.camera.pos;
-    super.onPreUpdate(engine, delta);
   }
 
   public onInitialize(engine: Engine) {

@@ -28,7 +28,8 @@ class SoldierArm extends Actor {
     this.graphics.offset.x = -2 * soldier.direction;
   }
 
-  public update() {
+  public update(engine: Engine, delta: number): void {
+    super.update(engine, delta);
     this.animateArm();
   }
 
