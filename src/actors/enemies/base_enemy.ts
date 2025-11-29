@@ -1,15 +1,11 @@
 import { Actor, ActorArgs } from "excalibur";
 
-export default class BaseEnemy extends Actor {
-  public bleeds = true;
+export default abstract class BaseEnemy extends Actor {
+  public bleeds: boolean = true;
 
-  public get health(): number {
-    return 1;
-  }
+  public abstract get health(): number;
 
-  public set health(_value: number) {
-    // no-op
-  }
+  public abstract set health(_value: number);
 
   constructor(config?: ActorArgs) {
     super(config);
