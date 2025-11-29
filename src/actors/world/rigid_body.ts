@@ -15,18 +15,22 @@ export interface RigidBodyParams extends ActorArgs {
 }
 
 class RigidBody extends Actor {
-  constructor({ pos, sprite, width, height, ...rest }: RigidBodyParams) {
+  constructor({
+    pos,
+    sprite,
+    width,
+    height,
+    collisionType,
+    ...rest
+  }: RigidBodyParams) {
     const _width = width || sprite?.width;
     const _height = height || sprite?.height;
     super({ pos, width: _width, height: _height, ...rest });
     if (sprite) {
       this.graphics.use(sprite);
     }
-  }
-
-  public onInitialize(_engine: Engine): void {
     this.body.useGravity = false;
-    this.body.collisionType = CollisionType.Fixed;
+    this.body.collisionType = collisionType || CollisionType.Fixed;
   }
 }
 

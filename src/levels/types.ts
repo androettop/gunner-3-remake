@@ -32,7 +32,20 @@ export interface GroundEntity extends BaseLevelEntity {
   };
 }
 
-export type LevelEntity = PlayerEntity | EnemySoldierEntity | GroundEntity;
+export interface TriggerEntity extends BaseLevelEntity {
+  type: "trigger";
+  width: number;
+  height: number;
+  properties: {
+    type: "fall-death";
+  };
+}
+
+export type LevelEntity =
+  | PlayerEntity
+  | EnemySoldierEntity
+  | GroundEntity
+  | TriggerEntity;
 
 export type LevelLayer = {
   name: string;

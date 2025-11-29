@@ -1,6 +1,6 @@
 import { Actor, ActorArgs } from "excalibur";
 
-export default abstract class BaseEnemy extends Actor {
+export default abstract class BaseCreature extends Actor {
   public bleeds: boolean = true;
 
   public abstract get health(): number;

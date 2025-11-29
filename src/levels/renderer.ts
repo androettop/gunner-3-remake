@@ -1,8 +1,9 @@
-import { Scene } from "excalibur";
+import { Scene, vec } from "excalibur";
 import EnemySoldier from "../actors/enemies/enemy_soldier";
 import Ground from "../actors/world/ground";
 import { Level } from "./types";
 import Player from "../actors/player/player";
+import FallDeathTrigger from "../actors/world/fall_death_trigger";
 
 export const initLevel = (level: Level, scene: Scene) => {
   // Add layers
@@ -18,6 +19,14 @@ export const initLevel = (level: Level, scene: Scene) => {
         case "player":
           scene.add(new Player(entity));
           break;
+        case "trigger":
+          const { properties, type, x, y, ...triggerConfig } = entity;
+          switch (properties.type) {
+            case "fall-death":
+              scene.add(
+                new FallDeathTrigger({ pos: vec(x, y), ...triggerConfig }),
+              );
+          }
         default:
           break;
       }

@@ -13,7 +13,7 @@ import {
   Vector,
 } from "excalibur";
 import { CoyoteComponent } from "../../components/input/coyote";
-import BaseEnemy from "../enemies/base_enemy";
+import BaseCreature from "../enemies/base_creature";
 import Weapon from "../weapons/weapon";
 import WpPistol from "../weapons/wp_pistol";
 import WpShotgun from "../weapons/wp_shotgun";
@@ -27,7 +27,7 @@ export interface BaseSoldierParams extends ActorArgs {
 
 const soldierCollisionGroup = CollisionGroupManager.create("Soldiers");
 
-abstract class BaseSoldier extends BaseEnemy {
+abstract class BaseSoldier extends BaseCreature {
   public jumpSpeed = 515;
   public runSpeed = 160;
 
@@ -105,6 +105,7 @@ abstract class BaseSoldier extends BaseEnemy {
       width: 64,
       height: 64,
       collisionGroup: soldierCollisionGroup,
+      collisionType: CollisionType.Active,
       ...rest,
     });
     this.addComponent(this.coyote);
@@ -193,7 +194,6 @@ abstract class BaseSoldier extends BaseEnemy {
     this.graphics.offset.y = 4;
     this.isDiyng = true;
     this.graphics.use(this.deathAnimation);
-    this.body.collisionType = CollisionType.PreventCollision;
     this.onDie(engine);
   }
 
@@ -237,9 +237,6 @@ abstract class BaseSoldier extends BaseEnemy {
 
   public onInitialize(engine: Engine) {
     super.onInitialize(engine);
-
-    this.body.collisionType = CollisionType.Active;
-    this.body.useGravity = true;
 
     this.collider.useBoxCollider(22, 45, vec(0, 0), vec(-11, -13));
 

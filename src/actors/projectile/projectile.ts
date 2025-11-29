@@ -7,7 +7,7 @@ import {
   vec,
   Vector,
 } from "excalibur";
-import BaseEnemy from "../enemies/base_enemy";
+import BaseCreature from "../enemies/base_creature";
 import RigidBody from "../world/rigid_body";
 import BaseSoldier from "../soldier/base_soldier";
 import BloodParticle from "../particles/blood";
@@ -69,7 +69,7 @@ abstract class Projectile extends Actor {
       return;
     }
 
-    if (other.owner instanceof BaseEnemy) {
+    if (other.owner instanceof BaseCreature && other.owner.health > 0) {
       other.owner.health -= this.damage;
       if (this.destroyOnEnemyCollision) {
         this.destroy(false);
