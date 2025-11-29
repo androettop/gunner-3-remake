@@ -1,9 +1,9 @@
-import { Actor, Engine, vec } from "excalibur";
+import { Engine, ScreenElement, vec } from "excalibur";
 import { getPlayer } from "../../helpers/player";
 import { healthIndicatorSpriteSheet } from "./resources";
 import Player from "../player/player";
 
-class HealthIndicator extends Actor {
+class HealthIndicator extends ScreenElement {
   player?: Player;
 
   constructor() {
@@ -12,6 +12,7 @@ class HealthIndicator extends Actor {
       anchor: vec(0, 0),
       width: 64,
       height: 64,
+      z: 10,
     });
   }
 

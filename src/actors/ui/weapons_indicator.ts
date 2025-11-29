@@ -1,4 +1,4 @@
-import { Actor, Engine, Text, vec } from "excalibur";
+import { Engine, ScreenElement, Text, vec } from "excalibur";
 import { getPlayer } from "../../helpers/player";
 import { UiResources, weaponsIndicatorSpriteSheet } from "./resources";
 import Player from "../player/player";
@@ -6,13 +6,14 @@ import { WEAPONS_COUNT } from "../../helpers/consts";
 import StaticImage from "./static_image";
 import { spriteFont1 } from "../text/resources";
 
-class WeaponsIndicator extends Actor {
+class WeaponsIndicator extends ScreenElement {
   player?: Player;
 
   constructor() {
     super({
       pos: vec(40, 4),
       anchor: vec(0, 0),
+      z: 10,
     });
   }
 
