@@ -49,9 +49,9 @@ export const level01: Level = {
         },
         {
           type: "trigger",
-          x: 512 - 64,
+          x: 0,
           y: 236 + 64 * 4,
-          width: 64,
+          width: 24 * 64,
           height: 64,
           properties: {
             type: "fall-death",
