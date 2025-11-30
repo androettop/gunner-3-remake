@@ -3,7 +3,7 @@ import { SoundResources } from "../actors/sounds/resources";
 import { Level } from "./types";
 
 export const level01: Level = {
-  backgroundColor: Color.fromHex("29619c"),
+  backgroundColor: Color.fromHex("639ADE"),
   music: SoundResources.Level01Music,
   layers: [
     {
