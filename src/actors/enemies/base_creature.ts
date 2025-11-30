@@ -8,6 +8,6 @@ export default abstract class BaseCreature extends Actor {
   public abstract set health(_value: number);
 
   constructor(config?: ActorArgs) {
-    super(config);
+    super({ z: 1, ...config });
   }
 }

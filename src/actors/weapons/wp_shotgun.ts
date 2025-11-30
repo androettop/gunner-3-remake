@@ -15,13 +15,13 @@ class WpShotgun extends Weapon {
   private spriteSheet: SpriteSheet | null = null;
 
   public animateWeapon() {
-    const player = this.parent as Player | null;
-    if (!player || !this.spriteSheet) {
+    const soldier = this.parent as BaseSoldier | null;
+    if (!soldier || !this.spriteSheet) {
       return;
     }
     this.graphics.use(this.spriteSheet.getSprite(0, 0));
-    this.graphics.flipHorizontal = player.direction < 0;
-    this.graphics.offset.x = -2 * player.direction;
+    this.graphics.flipHorizontal = soldier.direction < 0;
+    this.graphics.offset.x = -2 * soldier.direction;
   }
 
   public update(engine: Engine, delta: number): void {

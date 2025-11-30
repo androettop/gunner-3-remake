@@ -33,7 +33,10 @@ export default class BaseParticle extends Actor {
     animStrategy = AnimationStrategy.End,
     ...config
   }: BaseParticleParams) {
-    super(config);
+    super({
+      ...config,
+      z: 1,
+    });
     this.animation = Animation.fromSpriteSheet(
       sprite,
       range,

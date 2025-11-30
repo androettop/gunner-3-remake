@@ -1,11 +1,4 @@
-import {
-  Actor,
-  ActorArgs,
-  CollisionType,
-  Engine,
-  TileMap,
-  Vector,
-} from "excalibur";
+import { Actor, ActorArgs, Engine, TileMap, Vector } from "excalibur";
 import { backgroundSpriteSheet } from "./resources";
 
 export interface JungleBackgroundConfig extends ActorArgs {

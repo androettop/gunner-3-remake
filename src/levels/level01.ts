@@ -8,7 +8,18 @@ export const level01: Level = {
   layers: [
     {
       name: "bg",
-      entities: [],
+      entities: [
+        {
+          type: "background",
+          y: 64 * 2,
+          x: 0,
+          width: 24 * 64,
+          height: 10 * 64,
+          properties: {
+            type: "jungle",
+          },
+        },
+      ],
       parallax: 0,
     },
     {

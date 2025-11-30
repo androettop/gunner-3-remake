@@ -28,6 +28,7 @@ abstract class Weapon extends Actor {
       pos: vec(0, 0),
       width: 64,
       height: 64,
+      z: 1,
       ...params,
     });
   }
