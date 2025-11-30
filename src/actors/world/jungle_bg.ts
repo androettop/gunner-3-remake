@@ -1,5 +1,6 @@
-import { Actor, ActorArgs, Engine, TileMap, Vector } from "excalibur";
+import { Actor, ActorArgs, Engine, TileMap, vec, Vector } from "excalibur";
 import { backgroundSpriteSheet } from "./resources";
+import StaticImage from "../ui/static_image";
 
 export interface JungleBackgroundConfig extends ActorArgs {
   width: number;
@@ -20,24 +21,28 @@ export default class JungleBackground extends Actor {
   onInitialize(engine: Engine): void {
     super.onInitialize(engine);
 
+    const sky = new StaticImage({
+      pos: vec(0, 0),
+      sprite: backgroundSpriteSheet.getSprite(0, 0),
+    });
+    sky.scale.x = 100;
+    this.addChild(sky);
+
     const sprite = backgroundSpriteSheet.getSprite(2, 0);
 
-    const baseTilemap = new TileMap({
-      rows: Math.ceil(this.height / sprite.height),
+    // jungle vegetation tilemap
+    const vegetationTilemap = new TileMap({
+      rows: 1,
       columns: Math.ceil(this.width / sprite.width),
       tileWidth: sprite.width,
       tileHeight: sprite.height,
     });
 
     // loop through tilemap cells
-    for (let tile of baseTilemap.tiles) {
-      tile.addGraphic(sprite);
+    for (let tile of vegetationTilemap.tiles) {
+      tile.addGraphic(sprite, { offset: vec(0, 100) });
     }
 
-    try {
-      this.addChild(baseTilemap);
-    } catch (error) {
-      console.error("Error adding jungle background tilemap:", error);
-    }
+    this.addChild(vegetationTilemap);
   }
 }

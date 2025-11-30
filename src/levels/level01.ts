@@ -11,7 +11,7 @@ export const level01: Level = {
       entities: [
         {
           type: "background",
-          y: 64 * 2,
+          y: 0,
           x: 0,
           width: 24 * 64,
           height: 10 * 64,
