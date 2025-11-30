@@ -4,12 +4,24 @@ import Ground from "../actors/world/ground";
 import { Level } from "./types";
 import Player from "../actors/player/player";
 import FallDeathTrigger from "../actors/world/fall_death_trigger";
+import JungleBackground from "../actors/world/jungle_bg";
 
 export const initLevel = (level: Level, scene: Scene) => {
   // Add layers
   level.layers.forEach((layer) => {
     layer.entities.forEach((entity) => {
       switch (entity.type) {
+        case "background":
+          if (entity.properties.type === "jungle") {
+            scene.add(
+              new JungleBackground({
+                width: entity.width,
+                height: entity.height,
+                pos: vec(entity.x, entity.y),
+              }),
+            );
+          }
+          break;
         case "ground":
           scene.add(new Ground(entity));
           break;
@@ -19,6 +31,7 @@ export const initLevel = (level: Level, scene: Scene) => {
         case "player":
           scene.add(new Player(entity));
           break;
+
         case "trigger":
           const { properties, type, x, y, ...triggerConfig } = entity;
           switch (properties.type) {

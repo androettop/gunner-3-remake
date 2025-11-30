@@ -41,11 +41,21 @@ export interface TriggerEntity extends BaseLevelEntity {
   };
 }
 
+export interface BackgroundEntity extends BaseLevelEntity {
+  type: "background";
+  width: number;
+  height: number;
+  properties: {
+    type: "jungle";
+  };
+}
+
 export type LevelEntity =
   | PlayerEntity
   | EnemySoldierEntity
   | GroundEntity
-  | TriggerEntity;
+  | TriggerEntity
+  | BackgroundEntity;
 
 export type LevelLayer = {
   name: string;
