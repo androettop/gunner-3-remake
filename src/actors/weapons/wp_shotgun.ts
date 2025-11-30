@@ -1,9 +1,8 @@
-import Weapon from "./weapon";
-import Player from "../player/player";
-import PBullet from "../projectile/p_bullet";
 import { Engine, SpriteSheet, vec } from "excalibur";
-import { SoundResources } from "../sounds/resources";
+import PBullet from "../projectile/p_bullet";
 import BaseSoldier from "../soldier/base_soldier";
+import { SoundResources } from "../sounds/resources";
+import Weapon from "./weapon";
 
 class WpShotgun extends Weapon {
   public readonly twoHanded = true;

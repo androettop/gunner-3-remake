@@ -1,11 +1,4 @@
-import {
-  Actor,
-  ActorArgs,
-  CollisionType,
-  Engine,
-  Graphic,
-  Vector,
-} from "excalibur";
+import { Actor, ActorArgs, CollisionType, Graphic, Vector } from "excalibur";
 
 export interface RigidBodyParams extends ActorArgs {
   pos: Vector;
