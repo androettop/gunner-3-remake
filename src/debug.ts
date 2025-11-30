@@ -1,7 +1,7 @@
 import { Engine } from "excalibur";
 import { getPlayer } from "./helpers/player";
 import DebugScene from "./scenes/debug_scene/debug_scene";
-import Level01 from "./scenes/level_01/level_01";
+import Level01 from "./levels/level01";
 
 export type DebugAction = {
   key: string;

@@ -1,11 +1,11 @@
 import { Color, Scene, Text, vec } from "excalibur";
-import { mainMenuSpriteSheet } from "../../actors/ui/resources";
 import { SoundResources } from "../../actors/sounds/resources";
-import Button from "../../actors/ui/button";
-import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
-import StaticImage from "../../actors/ui/static_image";
 import { spriteFont2Light } from "../../actors/text/resources";
-import DebugScene from "../debug_scene/debug_scene";
+import Button from "../../actors/ui/button";
+import { mainMenuSpriteSheet } from "../../actors/ui/resources";
+import StaticImage from "../../actors/ui/static_image";
+import { GAME_HEIGHT, GAME_WIDTH } from "../../helpers/consts";
+import Level01 from "../../levels/level01";
 
 class MainMenu extends Scene {
   startButton = new Button({
@@ -14,9 +14,9 @@ class MainMenu extends Scene {
     hoverSprite: mainMenuSpriteSheet.sprites[1],
     anchor: vec(0.5, 0),
     onPress: () => {
-      this.engine.removeScene("debug_scene");
-      this.engine.add("debug_scene", new DebugScene());
-      this.engine.goToScene("debug_scene");
+      this.engine.removeScene("level_01");
+      this.engine.add("level_01", new Level01());
+      this.engine.goToScene("level_01");
     },
   });
 

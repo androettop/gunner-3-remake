@@ -1,6 +1,7 @@
 import { Color } from "excalibur";
 import { SoundResources } from "../actors/sounds/resources";
 import { Level } from "./types";
+import levelSceneFactory from "./level_factory";
 
 export const level01: Level = {
   backgroundColor: Color.fromHex("639ADE"),
@@ -92,3 +93,7 @@ export const level01: Level = {
     },
   ],
 };
+
+const Level01 = levelSceneFactory(level01);
+
+export default Level01;
